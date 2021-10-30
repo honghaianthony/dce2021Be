@@ -11,7 +11,6 @@ const YAML = require('yamljs');
 const swaggerDocs = YAML.load('./docs/swagger.yml');
 
 const indexRouter = require('./src/routes/index');
-// const usersRouter = require('./src/routes/users');
 
 // Configures and sync models to the database
 db.sequelize.sync();
