@@ -30,6 +30,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexRouter);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-// app.use('/api/users', usersRouter);
 
 module.exports = app;
