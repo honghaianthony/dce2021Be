@@ -25,7 +25,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src/public')));
 
 app.use('/api', indexRouter);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
