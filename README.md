@@ -70,6 +70,8 @@ Quy định và quy trình làm việc với Backend
 
 ## Đối với team Frontend 
 
-- Nếu gặp lỗi khi chạy source code thì lập tức liên hệ với thành viên team Backend để tiến hành sửa lỗi (đừng thường xuyên quá nha) 
+- Nếu gặp lỗi khi chạy source code thì lập tức liên hệ với thành viên team Backend để tiến hành sửa lỗi (đừng thường xuyên quá nha).
+
 - Khi Frontend bắt đầu làm việc hãy start server Backend lên trước rồi vào https://localhost:3000/docs để có thể xem được docs swagger và test api để gắn api vào Frontend.
+
 - Chạy source Frontend ở port 3001.

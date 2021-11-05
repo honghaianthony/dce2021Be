@@ -1,14 +1,23 @@
 module.exports = (sequelize, Sequelize) => {
-    class Courses extends Sequelize.Model {}
+    class Course extends Sequelize.Model {
+        static associate(models) {
+            Course.hasMany(models.CoursesStartByUser, {
+                foreignKey: "courseId",
+            });
+            Course.hasMany(models.Lesson, {
+                foreignKey: "courseId",
+            });
+        }
+    }
 
-    Courses.init(
+    Course.init(
         {
             name: {
                 type: Sequelize.STRING(255),
                 allowNull: false,
                 unique: {
                     args: true,
-                    msg: "Courses with this name has already existed.",
+                    msg: "Course with this name has already existed.",
                 },
             },
             description: {
@@ -27,10 +36,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         {
             sequelize,
-            modelName: "Courses",
+            modelName: "Course",
             timestamps: true,
         }
     );
 
-    return Courses;
+    return Course;
 };

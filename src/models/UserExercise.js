@@ -1,7 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
-    class User_Exercise extends Sequelize.Model {}
+    class UserExercise extends Sequelize.Model {
+        static associate(models) {
+            UserExercise.belongsTo(models.Exercise, {
+                foreignKey: "exerciseId",
+            });
+            UserExercise.belongsTo(models.User, {
+                foreignKey: "userId",
+            });
+        }
+    }
 
-    User_Exercise.init(
+    UserExercise.init(
         {
             userId: {
                 type: Sequelize.INTEGER,
@@ -21,10 +30,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         {
             sequelize,
-            modelName: "User_Exercise",
+            modelName: "UserExercise",
             timestamps: true,
         }
     );
 
-    return User_Exercise;
+    return UserExercise;
 };

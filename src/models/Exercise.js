@@ -1,5 +1,14 @@
 module.exports = (sequelize, Sequelize) => {
-    class Exercise extends Sequelize.Model {}
+    class Exercise extends Sequelize.Model {
+        static associate(models) {
+            Exercise.hasMany(models.UserExercise, {
+                foreignKey: "exerciseId",
+            });
+            Exercise.belongsTo(models.User, {
+                foreignKey: "userId",
+            });
+        }
+    }
 
     Exercise.init(
         {
