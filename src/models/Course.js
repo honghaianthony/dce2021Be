@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
     class Course extends Sequelize.Model {
         static associate(models) {
-            Course.hasMany(models.CoursesStartByUser, {
-                foreignKey: "courseId",
-            });
+            // Course.hasMany(models.CoursesStartByUser, {
+            //     foreignKey: "courseId",
+            // });
             Course.hasMany(models.Lesson, {
                 foreignKey: "courseId",
             });
