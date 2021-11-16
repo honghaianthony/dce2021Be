@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-  class Lesson_comment extends Sequelize.Model {}
-  Lesson_comment.init(
+  class LessonComment extends Sequelize.Model {}
+  LessonComment.init(
     {
       content: {
         type: Sequelize.TEXT,
@@ -14,9 +14,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     {
       sequelize,
-      modelName: "Lesson_comment",
+      modelName: "LessonComment",
       timestamps: true,
     }
   );
-  return Lesson_comment;
+  return LessonComment;
 };

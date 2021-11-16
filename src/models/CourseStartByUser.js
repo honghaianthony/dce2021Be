@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-  class course_start_by_user extends Sequelize.Model {}
-  course_start_by_user.init(
+  class CourseStartByUser extends Sequelize.Model {}
+  CourseStartByUser.init(
     {
       rate: {
         type: Sequelize.INTEGER,
@@ -14,9 +14,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     {
       sequelize,
-      modelName: "course_start_by_user",
+      modelName: "CourseStartByUser",
       timestamps: true,
     }
   );
-  return course_start_by_user;
+  return CourseStartByUser;
 };

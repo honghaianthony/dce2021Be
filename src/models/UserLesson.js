@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-  class User_lesson extends Sequelize.Model {}
-  User_lesson.init(
+  class UserLesson extends Sequelize.Model {}
+  UserLesson.init(
     {
       code: {
         type: Sequelize.STRING,
@@ -11,9 +11,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     {
       sequelize,
-      modelName: "User_lesson",
+      modelName: "UserLesson",
       timestamps: true,
     }
   );
-  return User_lesson;
+  return UserLesson;
 };
