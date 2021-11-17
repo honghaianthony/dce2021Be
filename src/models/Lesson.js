@@ -49,6 +49,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      output: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       isDeleted: {
         type: Sequelize.BOOLEAN,
       },

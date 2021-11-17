@@ -5,12 +5,6 @@ module.exports = (sequelize, Sequelize) => {
       content: {
         type: Sequelize.TEXT,
       },
-      createAt: {
-        type: Sequelize.DATEONLY,
-      },
-      updateAt: {
-        type: Sequelize.DATEONLY,
-      },
     },
     {
       sequelize,
