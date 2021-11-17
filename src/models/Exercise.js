@@ -4,9 +4,9 @@ module.exports = (sequelize, Sequelize) => {
       // Exercise.hasMany(models.UserExercise, {
       //     foreignKey: "exerciseId",
       // });
-      // Exercise.belongsTo(models.User, {
-      //     foreignKey: "userId",
-      // });
+      Exercise.belongsTo(models.User, {
+          foreignKey: "userId",
+      });
       Exercise.belongsToMany(models.User, {
         through: "UserExercise",
         foreignKey: "exerciseId",
