@@ -1,11 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json({
-    user: "test",
-  });
-});
+const userController = require("../controllers/userController");
+
+router.get("/get-users", userController.getUsers);
+router.put("/update-users", userController.updateUsers);
+router.get("/delete-users", userController.deleteUsers);
+
+router.post("/create-new-user-exercise", userController.createNewUserExercise);
+router.get("/get-comment", userController.getUserExercise);
+router.put("/update-comment", userController.updateUserExercise);
+router.get("/delete-comment", userController.deleteUserExercise);
 
 module.exports = router;
