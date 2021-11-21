@@ -4,9 +4,129 @@ info:
   version: '1.0'
 servers:
   - url: http://localhost:3000/api
+tags:
+  - name: courses
+    description: Everything about courses
+  - name: auth
+    description: Everything about auth
 paths:
+  /private:
+    get:
+      description: test authentication 
+      tags: 
+        - auth
+      responses:
+        '200':
+          description: OK
+      security:
+        - bearerAuth: []
+  /login:
+    post:
+      description: login - nếu thành công thì trả ra token 
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username: 
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+                  success:  
+                    type: boolean
+                  token: 
+                    type: string
+                  expires:
+                    type: string
+  /register:
+    post:
+      description: create user 
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                firstName:
+                  type: string
+                lastName: 
+                  type: string
+                email:
+                  type: string
+                phone: 
+                  type: string
+                dateOfBirth: 
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  token: 
+                    type: string
+                  expires: 
+                    type: string
+  /courses/get-courses:
+    get:
+      description: Lấy toàn bộ courses hoặc lấy 1 course bằng id
+      tags:
+        - courses
+      parameters:
+        - in: query
+          name: id
+          schema: 
+            type: string
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: ID của course 
+                    name:
+                      type: string
+                    
   /users:
     get:
       responses:
         '200':
           description: OK
+
+components:
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
