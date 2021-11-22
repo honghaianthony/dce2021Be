@@ -31,17 +31,12 @@ module.exports = (sequelize, Sequelize) => {
       coverImage: {
         type: Sequelize.STRING,
       },
-      isDeleted: {
-        type: Sequelize.BOOLEAN,
-      },
-      deleteTime: {
-        type: Sequelize.DATE,
-      },
     },
     {
       sequelize,
       modelName: "Blog",
       timestamps: true,
+      paranoid: true,
     }
   );
   return Blog;
