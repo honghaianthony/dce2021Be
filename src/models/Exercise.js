@@ -11,6 +11,9 @@ module.exports = (sequelize, Sequelize) => {
         through: "UserExercise",
         foreignKey: "exerciseId",
       });
+      Exercise.hasMany(models.ExerciseTest, {
+        foreignKey: "exerciseId"
+      });
     }
   }
 

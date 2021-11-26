@@ -25,6 +25,9 @@ module.exports = (sequelize, Sequelize) => {
         through: "LessonComment",
         foreignKey: "lessonId",
       });
+      Lesson.hasMany(models.LessonTest, {
+        foreignKey: "lessonId"
+      });
     }
   }
 
