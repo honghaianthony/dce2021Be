@@ -19,10 +19,10 @@ module.exports = {
             }
         });
     },
-    getCourses: function (courseId) {
+    getCourses: async function (courseId) {
         return new Promise(async function (resolve, reject) {
             try {
-                let courses = "";
+                let courses;
                 if (courseId === "ALL") {
                     courses = await models.Course.findAll();
                 }

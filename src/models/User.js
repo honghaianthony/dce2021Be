@@ -74,17 +74,12 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      isDeleted: {
-        type: Sequelize.BOOLEAN,
-      },
-      deleteTime: {
-        type: Sequelize.DATE,
-      },
     },
     {
       sequelize,
       modelName: "User",
       timestamps: true,
+      paranoid: true,
     }
   );
   return User;

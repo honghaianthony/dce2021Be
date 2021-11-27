@@ -32,17 +32,18 @@ module.exports = (sequelize, Sequelize) => {
       rate: {
         type: Sequelize.INTEGER,
       },
-      isDeleted: {
-        type: Sequelize.BOOLEAN,
+      time: {
+        type: Sequelize.INTEGER,
       },
-      deletedTime: {
-        type: Sequelize.DATE,
-      },
+      image: {
+        type: Sequelize.STRING,
+      }
     },
     {
       sequelize,
       modelName: "Course",
       timestamps: true,
+      paranoid: true,
     }
   );
 
