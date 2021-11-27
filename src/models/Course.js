@@ -35,6 +35,9 @@ module.exports = (sequelize, Sequelize) => {
       time: {
         type: Sequelize.INTEGER,
       },
+      image: {
+        type: Sequelize.STRING,
+      }
     },
     {
       sequelize,
