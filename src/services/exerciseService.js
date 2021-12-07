@@ -22,19 +22,36 @@ module.exports = {
             }
         });
     },
-    getExercises: function (exerciseId) {
+    getAllExercises: function () {
         return new Promise(async function (resolve, reject) {
             try {
-                let exercises = "";
-                if (exerciseId === "ALL") {
-                    exercises = await models.Exercise.findAll();
-                }
-                if (exerciseId && exerciseId !== "ALL") {
-                    exercises = await models.Exercise.findOne({
-                        where: { id: exerciseId },
+                let exercise = await models.Exercise.findAll();
+                resolve({
+                    errCode: 0,
+                    data: exercise,
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getExercisesById: function (exerciseId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                if (!exerciseId) {
+                    resolve({
+                        errCode: 1,
+                        errMessage: "Missing parameter input",
                     });
+                } else {
+                    let exercises = "";
+                    if (exerciseId && exerciseId !== "ALL") {
+                        exercises = await models.Exercise.findOne({
+                            where: { id: exerciseId },
+                        });
+                    }
+                    resolve(exercises);
                 }
-                resolve(exercises);
             } catch (error) {
                 reject(error);
             }
@@ -95,6 +112,24 @@ module.exports = {
                         errMessage: "The exercises has been deleted",
                     });
                 }
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    confirmDoExercise: function (data) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                await models.Exercise.create({
+                    userId: data.userId,
+                    exerciseId: data.exerciseId,
+                    code: data.code,
+                    isCompleted: data.isCompleted,
+                });
+                resolve({
+                    errCode: 0,
+                    errMessage: "Confirm Doing Exercise",
+                });
             } catch (error) {
                 reject(error);
             }

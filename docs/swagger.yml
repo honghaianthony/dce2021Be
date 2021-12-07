@@ -1,132 +1,250 @@
-openapi: '3.0.2'
+openapi: "3.0.2"
 info:
-  title: Swagger API
-  version: '1.0'
+    title: Swagger API
+    version: "1.0"
 servers:
-  - url: http://localhost:3000/api
+    - url: http://localhost:3000/api
 tags:
-  - name: courses
-    description: Everything about courses
-  - name: auth
-    description: Everything about auth
+    - name: courses
+      description: Everything about courses
+    - name: auth
+      description: Everything about auth
 paths:
-  /private:
-    get:
-      description: test authentication 
-      tags: 
-        - auth
-      responses:
-        '200':
-          description: OK
-      security:
-        - bearerAuth: []
-  /login:
-    post:
-      description: login - nếu thành công thì trả ra token 
-      tags:
-        - auth
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username: 
-                  type: string
-                password:
-                  type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message: 
-                    type: string
-                  success:  
-                    type: boolean
-                  token: 
-                    type: string
-                  expires:
-                    type: string
-  /register:
-    post:
-      description: create user 
-      tags:
-        - auth
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                password:
-                  type: string
-                firstName:
-                  type: string
-                lastName: 
-                  type: string
-                email:
-                  type: string
-                phone: 
-                  type: string
-                dateOfBirth: 
-                  type: string
-                  format: date-time
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                  token: 
-                    type: string
-                  expires: 
-                    type: string
-  /courses/get-courses:
-    get:
-      description: Lấy toàn bộ courses hoặc lấy 1 course bằng id
-      tags:
-        - courses
-      parameters:
-        - in: query
-          name: id
-          schema: 
-            type: string
+    /private:
+        get:
+            description: test authentication
+            tags:
+                - auth
+            responses:
+                "200":
+                    description: OK
+            security:
+                - bearerAuth: []
+    /login:
+        post:
+            description: login - nếu thành công thì trả ra token
+            tags:
+                - auth
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                username:
+                                    type: string
+                                password:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    success:
+                                        type: boolean
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+    /register:
+        post:
+            description: create user
+            tags:
+                - auth
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                username:
+                                    type: string
+                                password:
+                                    type: string
+                                firstName:
+                                    type: string
+                                lastName:
+                                    type: string
+                                email:
+                                    type: string
+                                phone:
+                                    type: string
+                                dateOfBirth:
+                                    type: string
+                                    format: date-time
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+    /courses/get-courses:
+        get:
+            description: Lấy toàn bộ courses hoặc lấy 1 course bằng id
+            tags:
+                - courses
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
 
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items: 
-                  type: object
-                  properties:
-                    id:
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của course
+                                        name:
+                                            type: string
+
+    /users:
+        get:
+            responses:
+                "200":
+                    description: OK
+
+    /courses/register-courses:
+        post:
+            description: Register Courses
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                courseId:
+                                    type: int
+                                userId:
+                                    type: int
+                                rate:
+                                    type: int
+                                isCompleted:
+                                    type: boolean
+                                timeCost:
+                                    type: int
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+    /exercises/get-all-exercises:
+        get:
+            description: Lấy toàn bộ Exercise
+            tags:
+                - exercises
+            parameters:
+                - in: query
+                  schema:
                       type: string
-                      description: ID của course 
-                    name:
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của exercise
+                                        name:
+                                            type: string
+    /exercises/get-exercises-by-id:
+        get:
+            description: Lấy Exercise theo Id
+            tags:
+                - exercises
+            parameters:
+                - in: query
+                  name: id
+                  schema:
                       type: string
-                    
-  /users:
-    get:
-      responses:
-        '200':
-          description: OK
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của exercise
+                                        name:
+                                            type: string
+
+    /exercises/confirm-do-exercise:
+        post:
+            description: Confirm Doing Exercise
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                exerciseId:
+                                    type: int
+                                userId:
+                                    type: int
+                                code:
+                                    type: string
+                                isCompleted:
+                                    type: boolean
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
 
 components:
-  securitySchemes:
-    bearerAuth:            
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
