@@ -19,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      name: {
+      exerciseName: {
         type: Sequelize.STRING(255),
         allowNull: false,
       },

@@ -28,12 +28,11 @@ module.exports = (sequelize, Sequelize) => {
       lessonName: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: {
-          args: true,
-          msg: "User with this username already exist.",
-        },
       },
       content: {
+        type: Sequelize.TEXT,
+      },
+      description: {
         type: Sequelize.TEXT,
       },
       input: {

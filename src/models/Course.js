@@ -16,10 +16,6 @@ module.exports = (sequelize, Sequelize) => {
       courseName: {
         type: Sequelize.STRING(255),
         allowNull: false,
-        unique: {
-          args: true,
-          msg: "Course with this name has already existed.",
-        },
       },
       description: {
         type: Sequelize.TEXT,
