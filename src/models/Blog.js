@@ -7,12 +7,7 @@ module.exports = (sequelize, Sequelize) => {
       Blog.hasMany(models.BlogImage, {
         foreignKey: "blogId",
       });
-      // Blog.hasMany(models.BlogComment, {
-      //   foreignKey: "blogId",
-      // });
-
-      Blog.belongsToMany(models.User, {
-        through: "BlogComment",
+      Blog.hasMany(models.BlogComment, {
         foreignKey: "blogId",
       });
     }

@@ -1,15 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
   class Course extends Sequelize.Model {
     static associate(models) {
-      // Course.hasMany(models.CoursesStartByUser, {
-      //     foreignKey: "courseId",
-      // });
       Course.hasMany(models.Lesson, {
         foreignKey: "courseId",
       });
 
-      Course.belongsToMany(models.User, {
-        through: "CourseStartByUser",
+      Course.hasMany(models.UserCourse, {
         foreignKey: "courseId",
       });
     }
@@ -17,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
 
   Course.init(
     {
-      name: {
+      courseName: {
         type: Sequelize.STRING(255),
         allowNull: false,
         unique: {
@@ -37,7 +33,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       image: {
         type: Sequelize.STRING,
-      }
+      },
     },
     {
       sequelize,
