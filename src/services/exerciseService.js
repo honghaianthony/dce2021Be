@@ -123,8 +123,6 @@ module.exports = {
                 await models.Exercise.create({
                     userId: data.userId,
                     exerciseId: data.exerciseId,
-                    code: data.code,
-                    isCompleted: data.isCompleted,
                 });
                 resolve({
                     errCode: 0,

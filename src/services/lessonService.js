@@ -20,13 +20,24 @@ module.exports = {
             }
         });
     },
-    getLessons: function (lessonId) {
+    getAllLessons: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let lessons = "";
-                if (lessonId === "ALL") {
-                    lessons = await models.Lesson.findAll();
-                }
+
+                lessons = await models.Lesson.findAll();
+
+                resolve(lessons);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getLessonsById: function (lessonId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let lessons = "";
+
                 if (lessonId && lessonId !== "ALL") {
                     lessons = await models.Lesson.findOne({
                         where: { id: lessonId },

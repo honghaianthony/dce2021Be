@@ -12,9 +12,20 @@ module.exports = {
             });
         }
     },
-    getLessons: async function (req, res) {
+    getAllLessons: async function (req, res) {
         try {
-            let lessons = await lessonService.getLessons(req.query.id);
+            let lessons = await lessonService.getAllLessons();
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getLessonsById: async function (req, res) {
+        try {
+            let lessons = await lessonService.getLessonsById(req.query.id);
             return res.status(200).json(lessons);
         } catch (error) {
             return res.status(200).json({

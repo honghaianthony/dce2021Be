@@ -1,7 +1,18 @@
 const userService = require("../services/userService");
 
 module.exports = {
-    getUsers: async function (req, res) {
+    getAllUsers: async function (req, res) {
+        try {
+            let users = await userService.getAllUsers();
+            return res.status(200).json(users);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getUserById: async function (req, res) {
         try {
             let users = await userService.getUsers(req.query.id);
             return res.status(200).json(users);
@@ -45,9 +56,20 @@ module.exports = {
             });
         }
     },
-    getUserExercise: async function (req, res) {
+    getAllComments: async function (req, res) {
         try {
-            let userLesson = await userService.getUserExercise(req.query.id);
+            let userLesson = await userService.getAllComments();
+            return res.status(200).json(userLesson);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getCommentById: async function (req, res) {
+        try {
+            let userLesson = await userService.getCommentById(req.query.id);
             return res.status(200).json(userLesson);
         } catch (error) {
             return res.status(200).json({

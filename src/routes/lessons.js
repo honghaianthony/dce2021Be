@@ -5,7 +5,8 @@ const router = express.Router();
 const lessonController = require("../controllers/lessonController");
 
 router.post("/create-new-lesson", lessonController.createNewLesson);
-router.get("/get-lessons", lessonController.getLessons);
+router.get("/get-all-lessons", lessonController.getAllLessons);
+router.get("/get-lesson-by-id", lessonController.getLessonsById);
 router.put("/update-lessons", lessonController.updateLessons);
 router.get("/delete-lessons", lessonController.deleteLessons);
 

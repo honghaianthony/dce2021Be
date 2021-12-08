@@ -19,13 +19,23 @@ module.exports = {
             }
         });
     },
-    getCourses: async function (courseId) {
+    getAllCourses: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let courses;
-                if (courseId === "ALL") {
-                    courses = await models.Course.findAll();
-                }
+
+                courses = await models.Course.findAll();
+
+                resolve(courses);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getCourseById: function (courseId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let courses;
                 if (courseId && courseId !== "ALL") {
                     courses = await models.Course.findOne({
                         where: { id: courseId },

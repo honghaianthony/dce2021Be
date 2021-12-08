@@ -20,13 +20,21 @@ module.exports = {
             }
         });
     },
-    getBlogs: function (blogId) {
+    getAllBlogs: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let blogs = "";
-                if (blogId === "ALL") {
-                    blogs = await models.Blog.findAll();
-                }
+                blogs = await models.Blog.findAll();
+                resolve(blogs);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getBlogsById: function (blogId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let blogs = "";
                 if (blogId && blogId !== "ALL") {
                     blogs = await models.Blog.findOne({
                         where: { id: blogId },

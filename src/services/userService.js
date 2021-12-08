@@ -1,17 +1,28 @@
 const models = require("../models");
 
 module.exports = {
-    getUsers: function (userId) {
+    getAllUsers: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let users = "";
-                if (userId === "ALL") {
-                    users = await models.User.findAll({
-                        attributes: {
-                            exclude: ["password"],
-                        },
-                    });
-                }
+
+                users = await models.User.findAll({
+                    attributes: {
+                        exclude: ["password"],
+                    },
+                });
+
+                resolve(users);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getUserById: function (userId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let users = "";
+
                 if (userId && userId !== "ALL") {
                     users = await models.User.findOne({
                         where: { id: userId },
@@ -105,13 +116,24 @@ module.exports = {
             }
         });
     },
-    getUserExercise: function (exerciseId) {
+    getAllComments: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let userExercise = "";
-                if (exerciseId === "ALL") {
-                    userExercise = await models.UserExercise.findAll();
-                }
+
+                userExercise = await models.UserExercise.findAll();
+
+                resolve(userExercise);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getCommentById: function (exerciseId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let userExercise = "";
+
                 if (exerciseId && exerciseId !== "ALL") {
                     userExercise = await models.UserExercise.findOne({
                         where: { id: exerciseId },

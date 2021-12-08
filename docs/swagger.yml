@@ -91,9 +91,34 @@ paths:
                                         type: string
                                     expires:
                                         type: string
-    /courses/get-courses:
+    /courses/get-all-courses:
         get:
-            description: Lấy toàn bộ courses hoặc lấy 1 course bằng id
+            description: Lấy toàn bộ courses
+            tags:
+                - courses
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của course
+                                        name:
+                                            type: string
+    /courses/get-course-by-id:
+        get:
+            description: Lấy course theo id
             tags:
                 - courses
             parameters:
@@ -118,11 +143,117 @@ paths:
                                         name:
                                             type: string
 
+    /lessons/get-all-lessons:
+        get:
+            description: Lấy toàn bộ lessons
+            tags:
+                - lessons
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của lesson
+                                        name:
+                                            type: string
+
+    /lessons/get-lesson-by-id:
+        get:
+            description: Lấy lesson theo id
+            tags:
+                - lessons
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của lesson
+                                        name:
+                                            type: string
+
     /users:
         get:
             responses:
                 "200":
                     description: OK
+
+    /users/get-all-users:
+        get:
+            description: Lấy toàn bộ users
+            tags:
+                - users
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/get-user-by-id:
+        get:
+            description: Lấy user theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
 
     /courses/register-courses:
         post:
@@ -206,6 +337,59 @@ paths:
                                         id:
                                             type: string
                                             description: ID của exercise
+                                        name:
+                                            type: string
+
+    /blog/get-all-blogs:
+        get:
+            description: Lấy toàn bộ blogs
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
+    /blog/get-blog-by-id:
+        get:
+            description: Lấy blog theo id
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
                                         name:
                                             type: string
 

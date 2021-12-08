@@ -12,9 +12,20 @@ module.exports = {
             });
         }
     },
-    getCourses: async function (req, res) {
+    getAllCourses: async function (req, res) {
         try {
-            let courses = await courseService.getCourses(req.query.id);
+            let courses = await courseService.getAllCourses();
+            return res.status(200).json(courses);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getCourseById: async function (req, res) {
+        try {
+            let courses = await courseService.getCourseById(req.query.id);
             return res.status(200).json(courses);
         } catch (error) {
             return res.status(200).json({

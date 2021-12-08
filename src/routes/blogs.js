@@ -5,7 +5,8 @@ const router = express.Router();
 const blogController = require("../controllers/blogController");
 
 router.post("/create-new-blog", blogController.createNewBlog);
-router.get("/get-blog", blogController.getBlogs);
+router.get("/get-all-blogs", blogController.getAllBlogs);
+router.get("/get-blog-by-id", blogController.getBlogsById);
 router.put("/update-blog", blogController.updateBlogs);
 router.get("/delete-blog", blogController.deleteBlogs);
 
