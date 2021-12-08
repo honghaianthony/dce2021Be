@@ -10,9 +10,21 @@ router.put("/update-users", userController.updateUsers);
 router.get("/delete-users", userController.deleteUsers);
 
 router.post("/create-new-user-exercise", userController.createNewUserExercise);
-router.get("/get-all-comments", userController.getAllComments);
-router.get("/get-comment-by-id", userController.getCommentById);
-router.put("/update-comment", userController.updateUserExercise);
-router.get("/delete-comment", userController.deleteUserExercise);
+router.get("/get-all-user-exercise", userController.getAllUsersExercise);
+router.get("/get-user-exercise-by-id", userController.getUserExerciseById);
+router.put("/update-user-exercise", userController.updateUserExercise);
+router.get("/delete-user-exercise", userController.deleteUserExercise);
+
+router.post("/create-new-user-course", userController.createNewUserCourse);
+router.get("/get-all-user-course", userController.getAllUsersExerciseCourse);
+router.get("/get-user-course-by-id", userController.getUserCourseById);
+router.put("/update-user-course", userController.updateUserCourse);
+router.get("/delete-user-course", userController.deleteUserCourse);
+
+router.post("/create-new-user-lesson", userController.createNewUserLesson);
+router.get("/get-all-user-lesson", userController.getAllUsersLesson);
+router.get("/get-user-lesson-by-id", userController.getUserLessonById);
+router.put("/update-user-lesson", userController.updateUserLesson);
+router.get("/delete-user-lesson", userController.deleteUserLesson);
 
 module.exports = router;

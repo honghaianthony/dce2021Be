@@ -5,9 +5,11 @@ module.exports = {
         return new Promise(async function (resolve, reject) {
             try {
                 await models.Course.create({
-                    name: data.name,
+                    courseName: data.courseName,
                     description: data.description,
                     rate: data.rate,
+                    time: data.time,
+                    image: data.image,
                 });
 
                 resolve({
@@ -50,7 +52,7 @@ module.exports = {
     updateCourses: function (data) {
         return new Promise(async function (resolve, reject) {
             try {
-                if (!data.id || !data.name) {
+                if (!data.id) {
                     resolve({
                         errCode: 1,
                         errMessage: "Missing input parameter",
@@ -63,6 +65,9 @@ module.exports = {
                 if (course) {
                     course.description = data.description;
                     course.rate = data.rate;
+                    course.courseName = data.courseName;
+                    course.time = data.time;
+                    course.image = data.image;
 
                     await course.save();
 
@@ -100,25 +105,6 @@ module.exports = {
                         errMessage: "The course has been deleted",
                     });
                 }
-            } catch (error) {
-                reject(error);
-            }
-        });
-    },
-    registerCourses: function (data) {
-        return new Promise(async function (resolve, reject) {
-            try {
-                await models.CourseStartByUser.create({
-                    userId: data.userId,
-                    courseId: data.courseId,
-                    rate: data.rate,
-                    isCompleted: data.isCompleted,
-                    timeCost: data.timeCost,
-                });
-                resolve({
-                    errCode: 0,
-                    errMessage: "Register successfully",
-                });
             } catch (error) {
                 reject(error);
             }

@@ -143,6 +143,84 @@ paths:
                                         name:
                                             type: string
 
+    /lessons/create-new-lesson:
+        post:
+            description: Tạo Lessons mới
+            tags:
+                - lessons
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                courseId:
+                                    type: string
+                                lessonName:
+                                    type: string
+                                content:
+                                    type: string
+                                description:
+                                    type: string
+                                input:
+                                    type: string
+                                output:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /lessons/update-lessons:
+        put:
+            description: Cập nhật Lesson
+            tags:
+                - lessons
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                courseId:
+                                    type: string
+                                content:
+                                    type: string
+                                lessonName:
+                                    type: string
+                                description:
+                                    type: string
+                                input:
+                                    type: string
+                                output:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
     /lessons/get-all-lessons:
         get:
             description: Lấy toàn bộ lessons
@@ -193,6 +271,325 @@ paths:
                                         id:
                                             type: string
                                             description: ID của lesson
+                                        name:
+                                            type: string
+
+    /lessons/delete-lessons:
+        get:
+            description: Xóa lessons theo id
+            tags:
+                - lessons
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của lesson
+                                        name:
+                                            type: string
+
+    /lessons/create-new-lesson-comment:
+        post:
+            description: Tạo Lessons Comment mới
+            tags:
+                - lessons
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                lessonId:
+                                    type: string
+                                userId:
+                                    type: string
+                                content:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /lessons/get-all-lessons-comment:
+        get:
+            description: Lấy toàn bộ lessons comment
+            tags:
+                - lessons
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của lesson
+                                        name:
+                                            type: string
+
+    /lessons/get-lesson-comment-by-id:
+        get:
+            description: Lấy lesson comment theo id
+            tags:
+                - lessons
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của lesson
+                                        name:
+                                            type: string
+
+    /lessons/update-lessons-comment:
+        put:
+            description: Cập nhật Lesson Comment
+            tags:
+                - lessons
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                lessonId:
+                                    type: string
+                                userId:
+                                    type: string
+                                content:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+    /lessons/delete-lessons-comment:
+        get:
+            description: Xóa lessons theo id
+            tags:
+                - lessons
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của lesson
+                                        name:
+                                            type: string
+
+    /exercises/create-new-exercise-test:
+        post:
+            description: Tạo Exercise Test mới
+            tags:
+                - exercises
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                exerciseId:
+                                    type: string
+                                input:
+                                    type: string
+                                output:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /exercises/get-all-exercises-test:
+        get:
+            description: Lấy toàn bộ exercise test
+            tags:
+                - exercises
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của exercise
+                                        name:
+                                            type: string
+
+    /exercises/get-exercises-test-by-id:
+        get:
+            description: Lấy exercises test theo id
+            tags:
+                - exercises
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của exercise
+                                        name:
+                                            type: string
+
+    /exercises/update-exercises-test:
+        put:
+            description: Cập nhật Exercise test
+            tags:
+                - exercises
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                exerciseId:
+                                    type: string
+                                input:
+                                    type: string
+                                output:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /exercises/delete-exercises-test:
+        get:
+            description: Xóa exercise test theo id
+            tags:
+                - exercises
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của exercise
                                         name:
                                             type: string
 
@@ -255,25 +652,29 @@ paths:
                                         name:
                                             type: string
 
-    /courses/register-courses:
-        post:
-            description: Register Courses
+    /users/update-users:
+        put:
+            description: Cập nhật thông tin user
+            tags:
+                - users
             requestBody:
                 content:
                     application/json:
                         schema:
                             type: object
                             properties:
-                                courseId:
-                                    type: int
-                                userId:
-                                    type: int
-                                rate:
-                                    type: int
-                                isCompleted:
-                                    type: boolean
-                                timeCost:
-                                    type: int
+                                id:
+                                    type: string
+                                phone:
+                                    type: string
+                                firstName:
+                                    type: string
+                                lastName:
+                                    type: string
+                                dateOfBirth:
+                                    type: string
+                                    format: date-time
+
             responses:
                 "200":
                     description: OK
@@ -288,6 +689,635 @@ paths:
                                         type: string
                                     expires:
                                         type: string
+
+    /users/delete-users:
+        get:
+            description: Xóa user theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/create-new-user-exercise:
+        post:
+            description: Tạo user đăng ký exercise mới
+            tags:
+                - users
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                userId:
+                                    type: string
+                                exerciseId:
+                                    type: string
+                                code:
+                                    type: string
+                                isCompleted:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /users/get-all-user-exercise:
+        get:
+            description: Lấy toàn bộ user exercise
+            tags:
+                - users
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/get-user-exercise-by-id:
+        get:
+            description: Lấy user exercise theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/update-user-exercise:
+        put:
+            description: Cập nhật thông tin user exercise
+            tags:
+                - users
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                userId:
+                                    type: string
+                                exerciseId:
+                                    type: string
+                                code:
+                                    type: string
+                                isCompleted:
+                                    type: string
+                            
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /users/delete-user-course:
+        get:
+            description: Xóa user exercise theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/create-new-user-course:
+        post:
+            description: Tạo user đăng ký course mới
+            tags:
+                - users
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                userId:
+                                    type: string
+                                courseId:
+                                    type: string
+                                rate:
+                                    type: string
+                                isCompleted:
+                                    type: string
+                                timeCost:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /users/get-all-user-course:
+        get:
+            description: Lấy toàn bộ user course
+            tags:
+                - users
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/get-user-course-by-id:
+        get:
+            description: Lấy user course theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/update-user-course:
+        put:
+            description: Cập nhật thông tin user course
+            tags:
+                - users
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                userId:
+                                    type: string
+                                courseId:
+                                    type: string
+                                rate:
+                                    type: string
+                                isCompleted:
+                                    type: string
+                                timeCost:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /users/delete-user-course:
+        get:
+            description: Xóa user course theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/create-new-user-lesson:
+        post:
+            description: Tạo user đăng ký lesson mới
+            tags:
+                - users
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                userId:
+                                    type: string
+                                lessonId:
+                                    type: string
+                                code:
+                                    type: string
+                                isCompleted:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /users/get-all-user-lesson:
+        get:
+            description: Lấy toàn bộ user lesson
+            tags:
+                - users
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/get-user-lesson-by-id:
+        get:
+            description: Lấy user lesson theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /users/update-user-lesson:
+        put:
+            description: Cập nhật thông tin user lesson
+            tags:
+                - users
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                userId:
+                                    type: string
+                                lessonId:
+                                    type: string
+                                code:
+                                    type: string
+                                isCompleted:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /users/delete-user-lesson:
+        get:
+            description: Xóa user lesson theo id
+            tags:
+                - users
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /courses/create-new-courses:
+        post:
+            description: Tạo Courses mới
+            tags:
+                - courses
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                courseName:
+                                    type: string
+                                description:
+                                    type: string
+                                rate:
+                                    type: string
+                                time:
+                                    type: string
+                                image:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /courses/update-courses:
+        put:
+            description: Cập nhật thông tin course khóa học
+            tags:
+                - courses
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                courseName:
+                                    type: string
+                                description:
+                                    type: string
+                                rate:
+                                    type: string
+                                time:
+                                    type: string
+                                image:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /courses/delete-courses:
+        get:
+            description: Xóa thông tin cho khóa học
+            tags:
+                - courses
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của user
+                                        name:
+                                            type: string
+
+    /exercises/create-new-exercise:
+        post:
+            description: Tạo Exercise mới
+            tags:
+                - exercises
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                userId:
+                                    type: string
+                                exerciseName:
+                                    type: string
+                                content:
+                                    type: string
+                                input:
+                                    type: string
+                                output:
+                                    type: string
+                                level:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
     /exercises/get-all-exercises:
         get:
             description: Lấy toàn bộ Exercise
@@ -339,6 +1369,107 @@ paths:
                                             description: ID của exercise
                                         name:
                                             type: string
+
+    /exercises/update-exercises:
+        put:
+            description: Update exercise
+            tags:
+                - exercises
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                userId:
+                                    type: string
+                                exerciseName:
+                                    type: string
+                                content:
+                                    type: string
+                                input:
+                                    type: string
+                                output:
+                                    type: string
+                                level:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /exercises/delete-exercises:
+        get:
+            description: Xóa Exercise
+            tags:
+                - exercises
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của exercise
+                                        name:
+                                            type: string
+
+    /blog/create-new-blog:
+        post:
+            description: Tạo blog mới
+            tags:
+                - blogs
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                userId:
+                                    type: string
+                                title:
+                                    type: string
+                                content:
+                                    type: string
+                                coverImage:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
 
     /blog/get-all-blogs:
         get:
@@ -393,9 +1524,366 @@ paths:
                                         name:
                                             type: string
 
+    /blog/update-blog:
+        put:
+            description: Sửa blog
+            tags:
+                - blogs
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                userId:
+                                    type: string
+                                title:
+                                    type: string
+                                content:
+                                    type: string
+                                coverImage:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /blog/delete-blog:
+        get:
+            description: Xóa blog theo id
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
+    /blog/create-new-comment:
+        post:
+            description: Tạo blog comment
+            tags:
+                - blogs
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                blogId:
+                                    type: string
+                                userId:
+                                    type: string
+                                content:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /blog/get-all-blog-comments:
+        get:
+            description: Lấy toàn bộ comment của blog
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
+    /blog/get-blog-comment-by-id:
+        get:
+            description: Lấy comment blog theo id
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
+    /blog/update-comment:
+        put:
+            description: Cập nhật blog comment
+            tags:
+                - blogs
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                blogId:
+                                    type: string
+                                userId:
+                                    type: string
+                                content:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /blog/delete-comment:
+        get:
+            description: Xóa blog comment
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
+    /blog/create-new-blog-image:
+        post:
+            description: Tạo blog Image
+            tags:
+                - blogs
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                blogId:
+                                    type: string
+                                image:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /blog/get-all-blog-images:
+        get:
+            description: Lấy toàn bộ blog image
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
+    /blog/get-blog-image-by-id:
+        get:
+            description: Lấy blog image theo id
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
+    /blog/update-blog-image:
+        put:
+            description: Sửa blog image
+            tags:
+                - blogs
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                                blogId:
+                                    type: string
+                                image:
+                                    type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                    token:
+                                        type: string
+                                    expires:
+                                        type: string
+
+    /blog/delete-blog-image:
+        get:
+            description: Xóa blog image theo id
+            tags:
+                - blogs
+            parameters:
+                - in: query
+                  name: id
+                  schema:
+                      type: string
+
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: string
+                                            description: ID của blogs
+                                        name:
+                                            type: string
+
     /exercises/confirm-do-exercise:
         post:
             description: Confirm Doing Exercise
+            tags:
+                - exercises
             requestBody:
                 content:
                     application/json:

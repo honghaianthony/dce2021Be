@@ -9,6 +9,5 @@ router.get("/get-all-courses", courseController.getAllCourses);
 router.get("/get-course-by-id", courseController.getCourseById);
 router.put("/update-courses", courseController.updateCourses);
 router.get("/delete-courses", courseController.deleteCourses);
-router.post("/register-courses", courseController.registerCourses);
 
 module.exports = router;

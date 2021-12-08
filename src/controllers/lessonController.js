@@ -56,4 +56,63 @@ module.exports = {
             });
         }
     },
+    createNewLessonComment: async function (req, res) {
+        try {
+            let lessons = await lessonService.createNewLessonComment(req.body);
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getAllLessonsComment: async function (req, res) {
+        try {
+            let lessons = await lessonService.getAllLessonsComment();
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getLessonsByIdComment: async function (req, res) {
+        try {
+            let lessons = await lessonService.getLessonsByIdComment(
+                req.query.id
+            );
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    updateLessonsComment: async function (req, res) {
+        try {
+            let lessons = await lessonService.updateLessonsComment(req.body);
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    deleteLessonsComment: async function (req, res) {
+        try {
+            let lessons = await lessonService.deleteLessonsComment(
+                req.query.id
+            );
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
 };
