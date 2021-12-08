@@ -1,5 +1,14 @@
 module.exports = (sequelize, Sequelize) => {
-  class LessonComment extends Sequelize.Model {}
+  class LessonComment extends Sequelize.Model {
+    static associate(models) {
+      LessonComment.belongsTo(models.Lesson, {
+        foreignKey: "lessonId",
+      });
+      LessonComment.belongsTo(models.User, {
+        foreignKey: "userId",
+      });
+    }
+  }
   LessonComment.init(
     {
       content: {

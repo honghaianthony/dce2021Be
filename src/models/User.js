@@ -8,35 +8,29 @@ module.exports = (sequelize, Sequelize) => {
         foreignKey: "userId",
       });
 
-      User.belongsToMany(models.Course, {
-        through: "CourseStartByUser",
+      User.hasMany(models.UserCourse, {
         foreignKey: "userId",
       });
-      User.belongsToMany(models.Lesson, {
-        through: "Note",
+      User.hasMany(models.Note, {
         foreignKey: "userId",
       });
-      User.belongsToMany(models.Lesson, {
-        through: "UserLesson",
+      User.hasMany(models.UserLesson, {
         foreignKey: "userId",
       });
-      User.belongsToMany(models.Lesson, {
-        through: "LessonComment",
+      User.hasMany(models.LessonComment, {
         foreignKey: "userId",
       });
-      User.belongsToMany(models.Exercise, {
-        through: "UserExercise",
+      User.hasMany(models.UserExercise, {
         foreignKey: "userId",
       });
-      User.belongsToMany(models.Blog, {
-        through: "BlogComment",
+      User.hasMany(models.BlogComment, {
         foreignKey: "userId",
       });
     }
   }
   User.init(
     {
-      username: {
+      userName: {
         type: Sequelize.STRING(255),
         allowNull: false,
         unique: {

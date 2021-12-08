@@ -2,31 +2,19 @@ module.exports = (sequelize, Sequelize) => {
   class Lesson extends Sequelize.Model {
     static associate(models) {
       Lesson.belongsTo(models.Course, {
-          foreignKey: "courseId",
+        foreignKey: "courseId",
       });
-      // Lesson.hasMany(models.Note, {
-      //     foreignKey: "lessonId",
-      // });
-      // Lesson.hasMany(models.UserLesson, {
-      //     foreignKey: "lessonId",
-      // });
-      // Lesson.hasMany(models.LessonComment, {
-      //     foreignKey: "lessonId",
-      // });
-      Lesson.belongsToMany(models.User, {
-        through: "Note",
+      Lesson.hasMany(models.Note, {
         foreignKey: "lessonId",
       });
-      Lesson.belongsToMany(models.User, {
-        through: "UserLesson",
+      Lesson.hasMany(models.UserLesson, {
         foreignKey: "lessonId",
       });
-      Lesson.belongsToMany(models.User, {
-        through: "LessonComment",
+      Lesson.hasMany(models.LessonComment, {
         foreignKey: "lessonId",
       });
       Lesson.hasMany(models.LessonTest, {
-        foreignKey: "lessonId"
+        foreignKey: "lessonId",
       });
     }
   }
@@ -37,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      name: {
+      lessonName: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: {

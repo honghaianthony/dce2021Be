@@ -1,18 +1,14 @@
 module.exports = (sequelize, Sequelize) => {
   class Exercise extends Sequelize.Model {
     static associate(models) {
-      // Exercise.hasMany(models.UserExercise, {
-      //     foreignKey: "exerciseId",
-      // });
       Exercise.belongsTo(models.User, {
-          foreignKey: "userId",
+        foreignKey: "userId",
       });
-      Exercise.belongsToMany(models.User, {
-        through: "UserExercise",
+      Exercise.hasMany(models.UserExercise, {
         foreignKey: "exerciseId",
       });
       Exercise.hasMany(models.ExerciseTest, {
-        foreignKey: "exerciseId"
+        foreignKey: "exerciseId",
       });
     }
   }
