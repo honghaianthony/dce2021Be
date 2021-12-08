@@ -8,5 +8,6 @@ router.post("/create-new-courses", courseController.createNewCourses);
 router.get("/get-courses", courseController.getCourses);
 router.put("/update-courses", courseController.updateCourses);
 router.get("/delete-courses", courseController.deleteCourses);
+router.post("/register-courses", courseController.registerCourses);
 
 module.exports = router;

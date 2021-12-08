@@ -95,4 +95,23 @@ module.exports = {
             }
         });
     },
+    registerCourses: function (data) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                await models.CourseStartByUser.create({
+                    userId: data.userId,
+                    courseId: data.courseId,
+                    rate: data.rate,
+                    isCompleted: data.isCompleted,
+                    timeCost: data.timeCost,
+                });
+                resolve({
+                    errCode: 0,
+                    errMessage: "Register successfully",
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
 };

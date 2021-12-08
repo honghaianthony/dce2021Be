@@ -45,4 +45,12 @@ module.exports = {
             });
         }
     },
+    registerCourses: async function (req, res) {
+        try {
+            let courses = await courseService.registerCourses(req.body);
+            return res.status(200).json(courses);
+        } catch (error) {
+            return res.status(404).send("Not found");
+        }
+    },
 };
