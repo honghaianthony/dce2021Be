@@ -1,4 +1,5 @@
 node_modules
+temp
 .env
 
 id_rsa_priv.pem
