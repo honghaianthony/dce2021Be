@@ -10,6 +10,31 @@ tags:
     - name: auth
       description: Everything about auth
 paths:
+    /forgot_password:
+        post:
+            description: recover password
+            tags:
+                - auth
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                userName:
+                                    type: string
+                                email:
+                                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
     /private:
         get:
             description: test authentication
@@ -31,7 +56,7 @@ paths:
                         schema:
                             type: object
                             properties:
-                                username:
+                                userName:
                                     type: string
                                 password:
                                     type: string
@@ -62,7 +87,7 @@ paths:
                         schema:
                             type: object
                             properties:
-                                username:
+                                userName:
                                     type: string
                                 password:
                                     type: string
