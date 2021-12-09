@@ -11,7 +11,8 @@ const initializePassport = require("./src/auth/passport");
 const db = require("./src/models/index");
 
 const YAML = require("yamljs");
-const swaggerDocs = YAML.load("./docs/swagger.yml");
+// const swaggerDocs = YAML.load("./docs/swagger.yml");
+const swaggerDocs = require("./docs/swagger.json");
 
 const indexRouter = require("./src/routes/index");
 

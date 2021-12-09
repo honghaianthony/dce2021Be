@@ -851,7 +851,6 @@ paths:
                                     type: string
                                 isCompleted:
                                     type: string
-                            
 
             responses:
                 "200":
@@ -868,7 +867,7 @@ paths:
                                     expires:
                                         type: string
 
-    /users/delete-user-course:
+    /users/delete-user-exercise:
         get:
             description: Xóa user exercise theo id
             tags:

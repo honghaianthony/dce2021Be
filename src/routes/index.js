@@ -8,10 +8,11 @@ const lessonRouter = require("./lessons");
 const authRouter = require("./auth");
 const blogRouter = require("./blogs");
 const uploadRouter = require("./upload");
+const compilerRouter = require("./compiler");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-    res.send("Hello");
+  res.send("Hello");
 });
 
 router.use(authRouter);
@@ -21,5 +22,6 @@ router.use("/exercises", exerciseRouter);
 router.use("/lessons", lessonRouter);
 router.use("/upload", uploadRouter);
 router.use("/blog", blogRouter);
+router.use("/compiler", compilerRouter);
 
 module.exports = router;
