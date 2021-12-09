@@ -20,13 +20,21 @@ module.exports = {
             }
         });
     },
-    getBlogs: function (blogId) {
+    getAllBlogs: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let blogs = "";
-                if (blogId === "ALL") {
-                    blogs = await models.Blog.findAll();
-                }
+                blogs = await models.Blog.findAll();
+                resolve(blogs);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getBlogsById: function (blogId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let blogs = "";
                 if (blogId && blogId !== "ALL") {
                     blogs = await models.Blog.findOne({
                         where: { id: blogId },
@@ -115,13 +123,23 @@ module.exports = {
             }
         });
     },
-    getComments: function (commentId) {
+    getAllBlogComments: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let comments = "";
-                if (commentId === "ALL") {
-                    comments = await models.BlogComment.findAll();
-                }
+
+                comments = await models.BlogComment.findAll();
+
+                resolve(comments);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getBlogCommentId: function (commentId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let comments = "";
                 if (commentId && commentId !== "ALL") {
                     comments = await models.BlogComment.findOne({
                         where: { userId: commentId },
@@ -136,7 +154,7 @@ module.exports = {
     updateComments: function (data) {
         return new Promise(async function (resolve, reject) {
             try {
-                if (!data.blogId || !data.userId) {
+                if (!data.blogId || !data.userId || !data.id) {
                     resolve({
                         errCode: 1,
                         errMessage: "Missing input parameter",
@@ -207,13 +225,24 @@ module.exports = {
             }
         });
     },
-    getBlogImages: function (imageId) {
+    getAllBlogImages: function () {
         return new Promise(async function (resolve, reject) {
             try {
                 let images = "";
-                if (imageId === "ALL") {
-                    images = await models.BlogImage.findAll();
-                }
+
+                images = await models.BlogImage.findAll();
+
+                resolve(images);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getBlogImagesById: function (imageId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let images = "";
+
                 if (imageId && imageId !== "ALL") {
                     images = await models.BlogImage.findOne({
                         where: { id: imageId },
@@ -228,7 +257,7 @@ module.exports = {
     updateBlogImages: function (data) {
         return new Promise(async function (resolve, reject) {
             try {
-                if (!data.blogId) {
+                if (!data.blogId || !data.id) {
                     resolve({
                         errCode: 1,
                         errMessage: "Missing input parameter",

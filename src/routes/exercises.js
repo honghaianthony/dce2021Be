@@ -11,4 +11,16 @@ router.put("/update-exercises", exerciseController.updateExercises);
 router.get("/delete-exercises", exerciseController.deleteExercises);
 router.post("/confirm-do-exercise", exerciseController.confirmDoExercise);
 
+router.post(
+    "/create-new-exercise-test",
+    exerciseController.createNewExerciseTest
+);
+router.get("/get-all-exercises-test", exerciseController.getAllExercisesTest);
+router.get(
+    "/get-exercises-test-by-id",
+    exerciseController.getExercisesTestById
+);
+router.put("/update-exercises-test", exerciseController.updateExercisesTest);
+router.get("/delete-exercises-test", exerciseController.deleteExercisesTest);
+
 module.exports = router;

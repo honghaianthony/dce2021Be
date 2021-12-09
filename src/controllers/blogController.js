@@ -12,9 +12,20 @@ module.exports = {
             });
         }
     },
-    getBlogs: async function (req, res) {
+    getAllBlogs: async function (req, res) {
         try {
-            let blog = await blogService.getBlogs(req.query.id);
+            let blog = await blogService.getAllBlogs();
+            return res.status(200).json(blog);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getBlogsById: async function (req, res) {
+        try {
+            let blog = await blogService.getBlogsById(req.query.id);
             return res.status(200).json(blog);
         } catch (error) {
             return res.status(200).json({
@@ -56,9 +67,20 @@ module.exports = {
             });
         }
     },
-    getComments: async function (req, res) {
+    getAllBlogComments: async function (req, res) {
         try {
-            let comment = await blogService.getComments(req.query.id);
+            let comment = await blogService.getAllBlogComments();
+            return res.status(200).json(comment);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getBlogCommentId: async function (req, res) {
+        try {
+            let comment = await blogService.getBlogCommentId(req.query.id);
             return res.status(200).json(comment);
         } catch (error) {
             return res.status(200).json({
@@ -100,9 +122,20 @@ module.exports = {
             });
         }
     },
-    getBlogImages: async function (req, res) {
+    getAllBlogImages: async function (req, res) {
         try {
-            let image = await blogService.getBlogImages(req.query.id);
+            let image = await blogService.getAllBlogImages();
+            return res.status(200).json(image);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getBlogImagesById: async function (req, res) {
+        try {
+            let image = await blogService.getBlogImagesById(req.query.id);
             return res.status(200).json(image);
         } catch (error) {
             return res.status(200).json({

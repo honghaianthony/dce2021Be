@@ -69,4 +69,65 @@ module.exports = {
             });
         }
     },
+    createNewExerciseTest: async function (req, res) {
+        try {
+            let exercises = await exerciseService.createNewExerciseTest(
+                req.body
+            );
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getAllExercisesTest: async function (req, res) {
+        try {
+            let exercises = await exerciseService.getAllExercisesTest();
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getExercisesTestById: async function (req, res) {
+        try {
+            let exercises = await exerciseService.getExercisesTestById(
+                req.query.id
+            );
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    updateExercisesTest: async function (req, res) {
+        try {
+            let exercises = await exerciseService.updateExercisesTest(req.body);
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    deleteExercisesTest: async function (req, res) {
+        try {
+            let exercises = await exerciseService.deleteExercisesTest(
+                req.query.id
+            );
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
 };
