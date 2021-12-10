@@ -23,6 +23,19 @@ module.exports = {
             });
         }
     },
+    getAllLessonsByCourseId: async function (req, res) {
+        try {
+            let lessons = await lessonService.getAllLessonsByCourseId(
+                req.query.courseId
+            );
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
     getLessonsById: async function (req, res) {
         try {
             let lessons = await lessonService.getLessonsById(req.query.id);
