@@ -35,6 +35,23 @@ module.exports = {
             }
         });
     },
+    getAllLessonsByCourseId: function (courseId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let lessons = "";
+
+                lessons = await models.Lesson.findAll({
+                    where: {
+                        courseId: courseId,
+                    },
+                });
+
+                resolve(lessons);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
     getLessonsById: function (lessonId) {
         return new Promise(async function (resolve, reject) {
             try {

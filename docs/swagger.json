@@ -2865,6 +2865,45 @@
         }
       }
     },
+    "/lessons/get-all-lessons-by-courseId": {
+      "get": {
+        "description": "Lấy lessons theo courseId",
+        "tags": ["lessons"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "courseId",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "courseId của lesson"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/exercises/confirm-do-exercise": {
       "post": {
         "description": "Confirm Doing Exercise",

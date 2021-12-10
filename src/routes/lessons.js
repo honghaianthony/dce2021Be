@@ -10,6 +10,11 @@ router.get("/get-lesson-by-id", lessonController.getLessonsById);
 router.put("/update-lessons", lessonController.updateLessons);
 router.get("/delete-lessons", lessonController.deleteLessons);
 
+router.get(
+    "/get-all-lessons-by-courseId",
+    lessonController.getAllLessonsByCourseId
+);
+
 router.post(
     "/create-new-lesson-comment",
     lessonController.createNewLessonComment
