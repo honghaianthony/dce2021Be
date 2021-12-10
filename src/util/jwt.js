@@ -23,11 +23,14 @@ function issueJWT(user) {
 
   const expiresIn = "3d";
 
+  const fullname = `${user.lastName} ${user.firstName}`;
+
   const payload = {
     sub: id,
     userId: id,
     role: user.role,
     username: user.userName,
+    fullname: fullname,
     // iat: Date.now()
   };
 
