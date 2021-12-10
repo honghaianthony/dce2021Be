@@ -8,23 +8,22 @@ module.exports = {
 
     if (lang === "C" || lang === "C++") {
       if (inputRadio === "true") {
-        var envData = { OS: "windows", cmd: "g++", options: { timeout: 1000 } };
+        var envData = {
+          OS: "windows",
+          cmd: "g++",
+          options: { timeout: 3000 },
+        };
         compiler.compileCPPWithInput(envData, code, input, function (data) {
-          // if (data.error) {
-          //   res.json(data.error);
-          // } else {
-          //   res.json(data.output);
-          // }
+          console.log(data);
           res.json(data);
         });
       } else {
-        var envData = { OS: "windows", cmd: "g++", options: { timeout: 1000 } };
+        var envData = {
+          OS: "windows",
+          cmd: "g++",
+          options: { timeout: 3000 },
+        };
         compiler.compileCPP(envData, code, function (data) {
-          // if (data.error) {
-          //   res.json(data.error);
-          // } else {
-          //   res.json(data.output);
-          // }
           res.json(data);
         });
       }
@@ -37,7 +36,7 @@ module.exports = {
         });
       } else {
         var envData = { OS: "windows" };
-        compiler.compileJavaWithInput(envData, code, input, function (data) {
+        compiler.compileJava(envData, code, function (data) {
           res.json(data);
         });
       }
