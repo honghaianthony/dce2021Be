@@ -3,7 +3,7 @@ const exerciseService = require("../services/exerciseService");
 module.exports = {
     createNewExercise: async function (req, res) {
         try {
-            let exercises = await exerciseService.createNewExercise(req.body);
+            let exercises = await exerciseService.createNewExercise(req);
             return res.status(200).json(exercises);
         } catch (error) {
             return res.status(200).json({

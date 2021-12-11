@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const passport = require("passport");
 
 /* GET users listing. */
 const exerciseController = require("../controllers/exerciseController");
 
-router.post("/create-new-exercise", exerciseController.createNewExercise);
+router.post(
+    "/create-new-exercise",
+    passport.authenticate("jwt", { session: false }),
+    exerciseController.createNewExercise
+);
 router.get("/get-all-exercises", exerciseController.getAllExercises);
 router.get("/get-exercises-by-id", exerciseController.getExercisesById);
 router.put("/update-exercises", exerciseController.updateExercises);

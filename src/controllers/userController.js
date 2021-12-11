@@ -3,7 +3,7 @@ const userService = require("../services/userService");
 module.exports = {
     getAllUsers: async function (req, res) {
         try {
-            let users = await userService.getAllUsers();
+            let users = await userService.getAllUsers(req);
             return res.status(200).json(users);
         } catch (error) {
             return res.status(200).json({
@@ -14,7 +14,7 @@ module.exports = {
     },
     getUserById: async function (req, res) {
         try {
-            let users = await userService.getUsers(req.query.id);
+            let users = await userService.getUserById(req);
             return res.status(200).json(users);
         } catch (error) {
             return res.status(200).json({
@@ -25,7 +25,7 @@ module.exports = {
     },
     updateUsers: async function (req, res) {
         try {
-            let users = await userService.updateUsers(req.body);
+            let users = await userService.updateUsers(req);
             return res.status(200).json(users);
         } catch (error) {
             return res.status(200).json({
@@ -36,7 +36,7 @@ module.exports = {
     },
     deleteUsers: async function (req, res) {
         try {
-            let users = await userService.deleteUsers(req.query.id);
+            let users = await userService.deleteUsers(req);
             return res.status(200).json(users);
         } catch (error) {
             return res.status(200).json({
@@ -47,7 +47,7 @@ module.exports = {
     },
     createNewUserExercise: async function (req, res) {
         try {
-            let userLesson = await userService.createNewUserExercise(req.body);
+            let userLesson = await userService.createNewUserExercise(req);
             return res.status(200).json(userLesson);
         } catch (error) {
             return res.status(200).json({
@@ -104,7 +104,7 @@ module.exports = {
     },
     createNewUserCourse: async function (req, res) {
         try {
-            let userLesson = await userService.createNewUserCourse(req.body);
+            let userLesson = await userService.createNewUserCourse(req);
             return res.status(200).json(userLesson);
         } catch (error) {
             return res.status(200).json({
@@ -159,7 +159,7 @@ module.exports = {
     },
     createNewUserLesson: async function (req, res) {
         try {
-            let userLesson = await userService.createNewUserLesson(req.body);
+            let userLesson = await userService.createNewUserLesson(req);
             return res.status(200).json(userLesson);
         } catch (error) {
             return res.status(200).json({

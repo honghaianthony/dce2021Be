@@ -1,43 +1,60 @@
 const models = require("../models");
 
 module.exports = {
-    getAllUsers: function () {
+    getAllUsers: function (req) {
+        const roleId = req.user.role;
         return new Promise(async function (resolve, reject) {
             try {
                 let users = "";
-
-                users = await models.User.findAll({
-                    attributes: {
-                        exclude: ["password"],
-                    },
-                });
-
-                resolve(users);
-            } catch (error) {
-                reject(error);
-            }
-        });
-    },
-    getUserById: function (userId) {
-        return new Promise(async function (resolve, reject) {
-            try {
-                let users = "";
-
-                if (userId && userId !== "ALL") {
-                    users = await models.User.findOne({
-                        where: { id: userId },
+                if (roleId === 2) {
+                    users = await models.User.findAll({
                         attributes: {
                             exclude: ["password"],
                         },
                     });
+                    resolve(users);
+                } else {
+                    resolve({
+                        errCode: 1,
+                        errMessage: "You have not permissions to see this",
+                    });
                 }
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
+    getUserById: function (req) {
+        const userId = req.query.id;
+        const roleId = req.user.role;
+        return new Promise(async function (resolve, reject) {
+            try {
+                let users = "";
+                if (roleId === 2) {
+                    if (userId && userId !== "ALL") {
+                        users = await models.User.findOne({
+                            where: { id: userId },
+                            attributes: {
+                                exclude: ["password"],
+                            },
+                        });
+                    }
+                } else {
+                    resolve({
+                        errCode: 1,
+                        errMessage: "You have not permissions to see this",
+                    });
+                }
+
                 resolve(users);
             } catch (error) {
                 reject(error);
             }
         });
     },
-    updateUsers: function (data) {
+    updateUsers: function (req) {
+        const data = req.body;
+        const roleId = req.user.role;
         return new Promise(async function (resolve, reject) {
             try {
                 if (!data.id) {
@@ -46,26 +63,33 @@ module.exports = {
                         errMessage: "Missing input parameter",
                     });
                 }
-                let user = await models.User.findOne({
-                    where: { id: data.id },
-                    raw: false,
-                });
-                if (user) {
-                    user.phone = data.phone;
-                    user.firstName = data.firstName;
-                    user.lastName = data.lastName;
-                    user.dateOfBirth = data.dateOfBirth;
-
-                    await user.save();
-
-                    resolve({
-                        errCode: 0,
-                        errMessage: "Update info successfully",
+                if (roleId === 2) {
+                    let user = await models.User.findOne({
+                        where: { id: data.id },
+                        raw: false,
                     });
+                    if (user) {
+                        user.phone = data.phone;
+                        user.firstName = data.firstName;
+                        user.lastName = data.lastName;
+                        user.dateOfBirth = data.dateOfBirth;
+
+                        await user.save();
+
+                        resolve({
+                            errCode: 0,
+                            errMessage: "Update info successfully",
+                        });
+                    } else {
+                        resolve({
+                            errCode: 2,
+                            errMessage: "Update info failed",
+                        });
+                    }
                 } else {
                     resolve({
-                        errCode: 2,
-                        errMessage: "User not found",
+                        errCode: 3,
+                        errMessage: "You have not permission to update",
                     });
                 }
             } catch (error) {
@@ -73,7 +97,9 @@ module.exports = {
             }
         });
     },
-    deleteUsers: function (userId) {
+    deleteUsers: function (req) {
+        const userId = req.query.id;
+        const roleId = req.user.role;
         return new Promise(async function (resolve, reject) {
             try {
                 if (!userId) {
@@ -82,14 +108,21 @@ module.exports = {
                         errMessage: "The user ID is not existed",
                     });
                 }
-                let user = await models.User.findOne({
-                    where: { id: userId },
-                });
-                if (user) {
-                    await user.destroy();
+                if (roleId === 2) {
+                    let user = await models.User.findOne({
+                        where: { id: userId },
+                    });
+                    if (user) {
+                        await user.destroy();
+                        resolve({
+                            errCode: 0,
+                            errMessage: "The user has been deleted",
+                        });
+                    }
+                } else {
                     resolve({
-                        errCode: 0,
-                        errMessage: "The user has been deleted",
+                        errCode: 2,
+                        errMessage: "You have not permission to delete this",
                     });
                 }
             } catch (error) {
@@ -97,11 +130,13 @@ module.exports = {
             }
         });
     },
-    createNewUserExercise: function (data) {
+    createNewUserExercise: function (req) {
+        const data = req.body;
+        const userId = req.user.id;
         return new Promise(async function (resolve, reject) {
             try {
                 await models.UserExercise.create({
-                    userId: data.userId,
+                    userId: userId,
                     exerciseId: data.exerciseId,
                     code: data.code,
                     isCompleted: data.isCompleted,
@@ -203,11 +238,13 @@ module.exports = {
             }
         });
     },
-    createNewUserCourse: function (data) {
+    createNewUserCourse: function (req) {
+        const data = req.body;
+        const userId = req.user.id;
         return new Promise(async function (resolve, reject) {
             try {
                 await models.UserCourse.create({
-                    userId: data.userId,
+                    userId: userId,
                     courseId: data.courseId,
                     rate: data.rate,
                     isCompleted: data.isCompleted,
@@ -311,11 +348,13 @@ module.exports = {
             }
         });
     },
-    createNewUserLesson: function (data) {
+    createNewUserLesson: function (req) {
+        const data = req.body;
+        const userId = req.user.id;
         return new Promise(async function (resolve, reject) {
             try {
                 await models.UserLesson.create({
-                    userId: data.userId,
+                    userId: userId,
                     lessonId: data.lessonId,
                     code: data.code,
                     isCompleted: data.isCompleted,
