@@ -9,6 +9,7 @@ module.exports = {
                     title: data.title,
                     content: data.content,
                     coverImage: data.coverImage,
+                    description: data.description,
                 });
 
                 resolve({
@@ -63,8 +64,7 @@ module.exports = {
                     blogs.title = data.title;
                     blogs.content = data.content;
                     blogs.coverImage = data.coverImage;
-
-                    await blogs.save();
+                    description: data.description, await blogs.save();
 
                     resolve({
                         errCode: 0,
