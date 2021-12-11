@@ -3,7 +3,7 @@ const blogService = require("../services/blogService");
 module.exports = {
   createNewBlog: async function (req, res) {
     try {
-      let blog = await blogService.createNewBlog(req.body);
+      let blog = await blogService.createNewBlog(req);
       return res.status(200).json(blog);
     } catch (error) {
       return res.status(200).json({

@@ -1,11 +1,13 @@
 const models = require("../models");
 
 module.exports = {
-  createNewBlog: function (data) {
+  createNewBlog: function (req) {
+    const data = req.body;
+    const userId = req.user.id;
     return new Promise(async function (resolve, reject) {
       try {
         await models.Blog.create({
-          userId: data.userId,
+          userId: userId,
           title: data.title,
           content: data.content,
           coverImage: data.coverImage,
@@ -25,7 +27,12 @@ module.exports = {
     return new Promise(async function (resolve, reject) {
       try {
         let blogs;
-        blogs = await models.Blog.findAll();
+        blogs = await models.Blog.findAll({
+          include: {
+            model: models.User,
+            attributes: { exclude: ["password"] },
+          },
+        });
         resolve(blogs);
       } catch (error) {
         reject(error);
@@ -39,6 +46,10 @@ module.exports = {
         if (blogId && blogId !== "ALL") {
           blogs = await models.Blog.findOne({
             where: { id: blogId },
+            include: {
+              model: models.User,
+              attributes: { exclude: ["password"] },
+            },
           });
         }
         resolve(blogs);
@@ -125,7 +136,7 @@ module.exports = {
       }
     });
   },
-  getAllBlogComments: function () {
+  getAllBlogComments: function (req) {
     return new Promise(async function (resolve, reject) {
       try {
         let comments = "";
