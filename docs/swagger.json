@@ -323,12 +323,6 @@
                   },
                   "description": {
                     "type": "string"
-                  },
-                  "input": {
-                    "type": "string"
-                  },
-                  "output": {
-                    "type": "string"
                   }
                 }
               }
@@ -383,12 +377,6 @@
                     "type": "string"
                   },
                   "description": {
-                    "type": "string"
-                  },
-                  "input": {
-                    "type": "string"
-                  },
-                  "output": {
                     "type": "string"
                   }
                 }
@@ -1998,12 +1986,6 @@
                   "content": {
                     "type": "string"
                   },
-                  "input": {
-                    "type": "string"
-                  },
-                  "output": {
-                    "type": "string"
-                  },
                   "level": {
                     "type": "string"
                   }
@@ -2136,12 +2118,6 @@
                   "content": {
                     "type": "string"
                   },
-                  "input": {
-                    "type": "string"
-                  },
-                  "output": {
-                    "type": "string"
-                  },
                   "level": {
                     "type": "string"
                   }
@@ -2263,7 +2239,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/blog/get-all-blogs": {

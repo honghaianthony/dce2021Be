@@ -26,14 +26,6 @@ module.exports = (sequelize, Sequelize) => {
       content: {
         type: Sequelize.TEXT,
       },
-      input: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      output: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       level: {
         type: Sequelize.INTEGER,
       },
