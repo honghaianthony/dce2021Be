@@ -24,7 +24,7 @@ module.exports = {
     getAllBlogs: function () {
         return new Promise(async function (resolve, reject) {
             try {
-                let blogs = "";
+                let blogs;
                 blogs = await models.Blog.findAll();
                 resolve(blogs);
             } catch (error) {
@@ -64,7 +64,9 @@ module.exports = {
                     blogs.title = data.title;
                     blogs.content = data.content;
                     blogs.coverImage = data.coverImage;
-                    description: data.description, await blogs.save();
+                    blogs.description = data.description;
+
+                    await blogs.save();
 
                     resolve({
                         errCode: 0,
