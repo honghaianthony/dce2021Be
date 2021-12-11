@@ -24,7 +24,12 @@ module.exports = {
     return new Promise(async function (resolve, reject) {
       try {
         let blogs;
-        blogs = await models.Blog.findAll();
+        blogs = await models.Blog.findAll({
+          include: {
+            model: models.User,
+            attributes: { exclude: ["password"] },
+          },
+        });
         resolve(blogs);
       } catch (error) {
         reject(error);
@@ -38,6 +43,10 @@ module.exports = {
         if (blogId && blogId !== "ALL") {
           blogs = await models.Blog.findOne({
             where: { id: blogId },
+            include: {
+              model: models.User,
+              attributes: { exclude: ["password"] },
+            },
           });
         }
         resolve(blogs);
@@ -123,12 +132,18 @@ module.exports = {
       }
     });
   },
-  getAllBlogComments: function () {
+  getAllBlogComments: function (req) {
     return new Promise(async function (resolve, reject) {
       try {
         let comments = "";
 
-        comments = await models.BlogComment.findAll();
+        comments = await models.BlogComment.findAll({
+          where: { blogId: req.query.blogId },
+          include: {
+            model: models.User,
+            attributes: { exclude: ["password"] },
+          },
+        });
 
         resolve(comments);
       } catch (error) {

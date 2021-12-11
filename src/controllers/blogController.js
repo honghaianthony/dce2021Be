@@ -69,7 +69,7 @@ module.exports = {
   },
   getAllBlogComments: async function (req, res) {
     try {
-      let comment = await blogService.getAllBlogComments();
+      let comment = await blogService.getAllBlogComments(req);
       return res.status(200).json(comment);
     } catch (error) {
       return res.status(200).json({

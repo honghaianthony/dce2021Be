@@ -2484,9 +2484,10 @@
         "tags": ["blogs"],
         "parameters": [
           {
+            "name": "blogId",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
