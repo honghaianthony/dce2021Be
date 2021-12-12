@@ -128,4 +128,72 @@ module.exports = {
             });
         }
     },
+    createNewLessonTest: async function (req, res) {
+        try {
+            let lessons = await lessonService.createNewLessonTest(req.body);
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getAllLessonsTest: async function (req, res) {
+        try {
+            let lessons = await lessonService.getAllLessonsTest();
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getAllLessonsTestByLessonId: async function (req, res) {
+        try {
+            let lessons = await lessonService.getAllLessonsTestByCourseId(
+                req.query.lessonId
+            );
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    getLessonsByIdTest: async function (req, res) {
+        try {
+            let lessons = await lessonService.getLessonsByIdTest(req.query.id);
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    updateLessonsTest: async function (req, res) {
+        try {
+            let lessons = await lessonService.updateLessonsTest(req.body);
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
+    deleteLessonsTest: async function (req, res) {
+        try {
+            let lessons = await lessonService.deleteLessonsTest(req.query.id);
+            return res.status(200).json(lessons);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
 };

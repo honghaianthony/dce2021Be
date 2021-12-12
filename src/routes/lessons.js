@@ -24,4 +24,14 @@ router.get("/get-lesson-comment-by-id", lessonController.getLessonsByIdComment);
 router.put("/update-lessons-comment", lessonController.updateLessonsComment);
 router.delete("/delete-lessons-comment", lessonController.deleteLessonsComment);
 
+router.post("/create-new-lesson-test", lessonController.createNewLessonTest);
+router.get("/get-all-lessons-test", lessonController.getAllLessonsTest);
+router.get("/get-lesson-test-by-id", lessonController.getLessonsByIdTest);
+router.get(
+    "/get-all-lessons-test-by-lessonId",
+    lessonController.getAllLessonsTestByLessonId
+);
+router.put("/update-lessons-test", lessonController.updateLessonsTest);
+router.delete("/delete-lessons-test", lessonController.deleteLessonsTest);
+
 module.exports = router;

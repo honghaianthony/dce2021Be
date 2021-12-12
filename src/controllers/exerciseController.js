@@ -93,6 +93,20 @@ module.exports = {
             });
         }
     },
+    getAllExercisesTestByExerciseId: async function (req, res) {
+        try {
+            let exercises =
+                await exerciseService.getAllExercisesTestByExerciseId(
+                    req.query.exerciseId
+                );
+            return res.status(200).json(exercises);
+        } catch (error) {
+            return res.status(200).json({
+                errCode: -1,
+                errMessage: "Error from server",
+            });
+        }
+    },
     getExercisesTestById: async function (req, res) {
         try {
             let exercises = await exerciseService.getExercisesTestById(

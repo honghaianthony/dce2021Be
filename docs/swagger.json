@@ -868,6 +868,45 @@
                 }
             }
         },
+        "/exercises/get-all-exercises-test-by-exerciseId": {
+            "get": {
+                "description": "Lấy exercises test theo exerciseId",
+                "tags": ["exercises"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "exerciseId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "ID của exercise"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/exercises/update-exercises-test": {
             "put": {
                 "description": "Cập nhật Exercise test",
@@ -946,6 +985,262 @@
                                             "id": {
                                                 "type": "string",
                                                 "description": "ID của exercise"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/lessons/create-new-lesson-test": {
+            "post": {
+                "description": "Tạo Lessons Test mới",
+                "tags": ["lessons"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "lessonId": {
+                                        "type": "string"
+                                    },
+                                    "input": {
+                                        "type": "string"
+                                    },
+                                    "output": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "expires": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/lessons/get-all-lessons-test": {
+            "get": {
+                "description": "Lấy toàn bộ lessons test",
+                "tags": ["lessons"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "ID của lesson"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/lessons/get-lesson-test-by-id": {
+            "get": {
+                "description": "Lấy lesson test theo id",
+                "tags": ["lessons"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "ID của lesson"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/lessons/get-all-lessons-test-by-lessonId": {
+            "get": {
+                "description": "Lấy lesson test theo lessonId",
+                "tags": ["lessons"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "lessonId",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "ID của lesson"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/lessons/update-lessons-test": {
+            "put": {
+                "description": "Cập nhật Lesson Test",
+                "tags": ["lessons"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "lessonId": {
+                                        "type": "string"
+                                    },
+                                    "input": {
+                                        "type": "string"
+                                    },
+                                    "output": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "expires": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/lessons/delete-lessons-test": {
+            "delete": {
+                "description": "Xóa lessons test theo id",
+                "tags": ["lessons"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "ID của lesson"
                                             },
                                             "name": {
                                                 "type": "string"

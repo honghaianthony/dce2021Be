@@ -22,6 +22,10 @@ router.post(
 );
 router.get("/get-all-exercises-test", exerciseController.getAllExercisesTest);
 router.get(
+    "/get-all-exercises-test-by-exerciseId",
+    exerciseController.getAllExercisesTestByExerciseId
+);
+router.get(
     "/get-exercises-test-by-id",
     exerciseController.getExercisesTestById
 );

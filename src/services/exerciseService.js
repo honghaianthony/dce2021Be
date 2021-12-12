@@ -35,6 +35,21 @@ module.exports = {
             }
         });
     },
+    getAllExercisesTestByExerciseId: function (exerciseId) {
+        return new Promise(async function (resolve, reject) {
+            try {
+                let exercise = await models.ExerciseTest.findAll({
+                    where: { exerciseId: exerciseId },
+                });
+                resolve({
+                    errCode: 0,
+                    data: exercise,
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
+    },
     getExercisesById: function (exerciseId) {
         return new Promise(async function (resolve, reject) {
             try {
