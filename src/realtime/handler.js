@@ -19,4 +19,18 @@ module.exports = async (io, socket) => {
     });
     socket.to(blogId).emit("receive-comment", result);
   });
+  socket.on("send-comment-lesson", async (mesage, userId, lessonId) => {
+    const comment = await models.LessonComment.create({
+      content: mesage,
+      userId: userId,
+      lessonId: lessonId,
+    });
+    const result = await models.LessonComment.findByPk(comment.id, {
+      include: {
+        model: models.User,
+        attributes: { exclude: ["password"] },
+      },
+    });
+    socket.to(lessonId).emit("receive-comment-lesson", result);
+  });
 };
