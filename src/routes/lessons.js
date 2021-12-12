@@ -22,6 +22,6 @@ router.post(
 router.get("/get-all-lessons-comment", lessonController.getAllLessonsComment);
 router.get("/get-lesson-comment-by-id", lessonController.getLessonsByIdComment);
 router.put("/update-lessons-comment", lessonController.updateLessonsComment);
-router.get("/delete-lessons-comment", lessonController.deleteLessonsComment);
+router.delete("/delete-lessons-comment", lessonController.deleteLessonsComment);
 
 module.exports = router;

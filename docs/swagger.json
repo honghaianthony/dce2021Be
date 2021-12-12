@@ -487,7 +487,7 @@
             }
         },
         "/lessons/delete-lessons": {
-            "get": {
+            "delete": {
                 "description": "Xóa lessons theo id",
                 "tags": ["lessons"],
                 "parameters": [
@@ -704,7 +704,7 @@
             }
         },
         "/lessons/delete-lessons-comment": {
-            "get": {
+            "delete": {
                 "description": "Xóa lessons theo id",
                 "tags": ["lessons"],
                 "parameters": [
@@ -921,7 +921,7 @@
             }
         },
         "/exercises/delete-exercises-test": {
-            "get": {
+            "delete": {
                 "description": "Xóa exercise test theo id",
                 "tags": ["exercises"],
                 "parameters": [
@@ -1117,7 +1117,7 @@
             }
         },
         "/users/delete-users": {
-            "get": {
+            "delete": {
                 "description": "Xóa user theo id",
                 "tags": ["users"],
                 "parameters": [
@@ -1345,7 +1345,7 @@
             }
         },
         "/users/delete-user-exercise": {
-            "get": {
+            "delete": {
                 "description": "Xóa user exercise theo id",
                 "tags": ["users"],
                 "parameters": [
@@ -1574,7 +1574,7 @@
             }
         },
         "/users/delete-user-course": {
-            "get": {
+            "delete": {
                 "description": "Xóa user course theo id",
                 "tags": ["users"],
                 "parameters": [
@@ -1797,7 +1797,7 @@
             }
         },
         "/users/delete-user-lesson": {
-            "get": {
+            "delete": {
                 "description": "Xóa user lesson theo id",
                 "tags": ["users"],
                 "parameters": [
@@ -1949,7 +1949,7 @@
             }
         },
         "/courses/delete-courses": {
-            "get": {
+            "delete": {
                 "description": "Xóa thông tin cho khóa học",
                 "tags": ["courses"],
                 "parameters": [
@@ -2172,7 +2172,7 @@
             }
         },
         "/exercises/delete-exercises": {
-            "get": {
+            "delete": {
                 "description": "Xóa Exercise",
                 "tags": ["exercises"],
                 "parameters": [
@@ -2392,7 +2392,7 @@
             }
         },
         "/blog/delete-blog": {
-            "get": {
+            "delete": {
                 "description": "Xóa blog theo id",
                 "tags": ["blogs"],
                 "parameters": [
@@ -2610,7 +2610,7 @@
             }
         },
         "/blog/delete-comment": {
-            "get": {
+            "delete": {
                 "description": "Xóa blog comment",
                 "tags": ["blogs"],
                 "parameters": [
@@ -2821,7 +2821,7 @@
             }
         },
         "/blog/delete-blog-image": {
-            "get": {
+            "delete": {
                 "description": "Xóa blog image theo id",
                 "tags": ["blogs"],
                 "parameters": [
@@ -3128,7 +3128,7 @@
             }
         },
         "/note/delete-note": {
-            "get": {
+            "delete": {
                 "description": "Xóa note theo id",
                 "tags": ["notes"],
                 "parameters": [

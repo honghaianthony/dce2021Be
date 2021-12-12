@@ -20,7 +20,7 @@ router.put(
     passport.authenticate("jwt", { session: false }),
     userController.updateUsers
 );
-router.get(
+router.delete(
     "/delete-users",
     passport.authenticate("jwt", { session: false }),
     userController.deleteUsers
@@ -34,7 +34,7 @@ router.post(
 router.get("/get-all-user-exercise", userController.getAllUsersExercise);
 router.get("/get-user-exercise-by-id", userController.getUserExerciseById);
 router.put("/update-user-exercise", userController.updateUserExercise);
-router.get("/delete-user-exercise", userController.deleteUserExercise);
+router.delete("/delete-user-exercise", userController.deleteUserExercise);
 
 router.post(
     "/create-new-user-course",
@@ -44,7 +44,7 @@ router.post(
 router.get("/get-all-user-course", userController.getAllUsersExerciseCourse);
 router.get("/get-user-course-by-id", userController.getUserCourseById);
 router.put("/update-user-course", userController.updateUserCourse);
-router.get("/delete-user-course", userController.deleteUserCourse);
+router.delete("/delete-user-course", userController.deleteUserCourse);
 
 router.post(
     "/create-new-user-lesson",
@@ -54,6 +54,6 @@ router.post(
 router.get("/get-all-user-lesson", userController.getAllUsersLesson);
 router.get("/get-user-lesson-by-id", userController.getUserLessonById);
 router.put("/update-user-lesson", userController.updateUserLesson);
-router.get("/delete-user-lesson", userController.deleteUserLesson);
+router.delete("/delete-user-lesson", userController.deleteUserLesson);
 
 module.exports = router;

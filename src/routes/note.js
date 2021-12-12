@@ -13,6 +13,6 @@ router.post(
 router.get("/get-all-notes", noteController.getAllNotes);
 router.get("/get-note-by-id", noteController.getNotesById);
 router.put("/update-note", noteController.updateNotes);
-router.get("/delete-note", noteController.deleteNotes);
+router.delete("/delete-note", noteController.deleteNotes);
 
 module.exports = router;
