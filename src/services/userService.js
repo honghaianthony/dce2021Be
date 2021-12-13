@@ -52,6 +52,54 @@ module.exports = {
       }
     });
   },
+  updateRole: function (req) {
+    const data = req.body;
+    const roleId = req.user.role;
+    return new Promise(async function (resolve, reject) {
+      try {
+        if (!data.id) {
+          resolve({
+            errCode: 1,
+            errMessage: "Missing input parameter",
+          });
+        }
+        if (data.id === req.user.id) {
+          resolve({
+            errCode: 1,
+            errMessage: "You have not permission to update",
+          });
+        }
+        if (roleId === 2 && data.id !== req.user.id) {
+          let user = await models.User.findOne({
+            where: { id: data.id },
+            raw: false,
+          });
+          if (user) {
+            user.role = data.role;
+
+            await user.save();
+
+            resolve({
+              errCode: 0,
+              errMessage: "Update info successfully",
+            });
+          } else {
+            resolve({
+              errCode: 2,
+              errMessage: "Update info failed",
+            });
+          }
+        } else {
+          resolve({
+            errCode: 3,
+            errMessage: "You have not permission to update",
+          });
+        }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
   updateUsers: function (req) {
     const data = req.body;
     const roleId = req.user.role;

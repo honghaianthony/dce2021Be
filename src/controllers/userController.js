@@ -34,6 +34,17 @@ module.exports = {
       });
     }
   },
+  updateRole: async function (req, res) {
+    try {
+      let users = await userService.updateRole(req);
+      return res.status(200).json(users);
+    } catch (error) {
+      return res.status(200).json({
+        errCode: -1,
+        errMessage: "Error from server",
+      });
+    }
+  },
   deleteUsers: async function (req, res) {
     try {
       let users = await userService.deleteUsers(req);

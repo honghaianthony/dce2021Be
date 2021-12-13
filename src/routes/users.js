@@ -20,6 +20,11 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   userController.updateUsers
 );
+router.put(
+  "/update-users-role",
+  passport.authenticate("jwt", { session: false }),
+  userController.updateRole
+);
 router.delete(
   "/delete-users",
   passport.authenticate("jwt", { session: false }),
