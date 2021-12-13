@@ -258,7 +258,7 @@ module.exports = {
       try {
         let lessons = "";
 
-        lessons = await models.LessonTest.findAll({
+        lessons = await models.LessonTest.findOne({
           where: { lessonId: req.query.lessonId },
         });
 
