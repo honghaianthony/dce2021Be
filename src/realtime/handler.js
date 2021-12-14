@@ -6,10 +6,11 @@ module.exports = async (io, socket) => {
     socket.join(room);
   });
   socket.on("send-comment", async (mesage, userId, blogId) => {
+    const blogIdInt = parseInt(blogId);
     const comment = await models.BlogComment.create({
       content: mesage,
       userId: userId,
-      blogId: blogId,
+      blogId: blogIdInt,
     });
     const result = await models.BlogComment.findByPk(comment.id, {
       include: {
@@ -20,10 +21,11 @@ module.exports = async (io, socket) => {
     socket.to(blogId).emit("receive-comment", result);
   });
   socket.on("send-comment-lesson", async (mesage, userId, lessonId) => {
+    const lessonIdInt = parseInt(lessonId);
     const comment = await models.LessonComment.create({
       content: mesage,
       userId: userId,
-      lessonId: lessonId,
+      lessonId: lessonIdInt,
     });
     const result = await models.LessonComment.findByPk(comment.id, {
       include: {
