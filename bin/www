@@ -4,16 +4,16 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('nmcnpm-be:server');
-var http = require('http');
+var app = require("../app");
+var debug = require("debug")("nmcnpm-be:server");
+var http = require("http");
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+var port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
 
 /**
  * Create HTTP server.
@@ -21,9 +21,8 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-
-// add socket.io server 
-const {Server} = require('socket.io');
+// add socket.io server
+const { Server } = require("socket.io");
 const option = {
   // path: "/chat",
   serveClient: true,
@@ -31,20 +30,20 @@ const option = {
   cors: {
     origin: ["http://localhost:3001"],
     // allowedHeaders: ["my-custom-header"],
-    credentials: true
-  }
+    credentials: true,
+  },
 };
 const io = new Server(server, option);
 
-const registerHandler = require('../src/realtime/handler')
+const registerHandler = require("../src/realtime/handler");
 
 const onConnection = (socket) => {
-  console.log(`User Connected: ${socket.id}`);
+  // console.log(`User Connected: ${socket.id}`);
   registerHandler(io, socket);
   socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
+    // console.log("User Disconnected", socket.id);
   });
-}
+};
 
 io.on("connection", onConnection);
 
@@ -52,11 +51,13 @@ io.on("connection", onConnection);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port,() => {
-  console.log(`Server listening on port ${port} go to http://localhost:${port}/docs/ for document`)
+server.listen(port, () => {
+  console.log(
+    `Server listening on port ${port} go to http://localhost:${port}/docs/ for document`
+  );
 });
-server.on('error', onError);
-server.on('listening', onListening);
+server.on("error", onError);
+server.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -83,22 +84,20 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
+  if (error.syscall !== "listen") {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
       process.exit(1);
       break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
       process.exit(1);
       break;
     default:
@@ -112,8 +111,6 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
 }
