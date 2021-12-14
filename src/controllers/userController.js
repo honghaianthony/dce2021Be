@@ -69,7 +69,7 @@ module.exports = {
   },
   getAllUsersExercise: async function (req, res) {
     try {
-      let userLesson = await userService.getAllUsersExercise();
+      let userLesson = await userService.getAllUsersExercise(req);
       return res.status(200).json(userLesson);
     } catch (error) {
       return res.status(200).json({
@@ -124,7 +124,7 @@ module.exports = {
   },
   getAllUsersExerciseCourse: async function (req, res) {
     try {
-      let userLesson = await userService.getAllUsersExerciseCourse();
+      let userLesson = await userService.getAllUsersExerciseCourse(req);
       return res.status(200).json(userLesson);
     } catch (error) {
       return res.status(200).json({
@@ -149,7 +149,7 @@ module.exports = {
   },
   updateUserCourse: async function (req, res) {
     try {
-      let userLesson = await userService.updateUserCourse(req.body);
+      let userLesson = await userService.updateUserCourse(req);
       return res.status(200).json(userLesson);
     } catch (error) {
       return res.status(200).json({
@@ -193,7 +193,7 @@ module.exports = {
   },
   getUserLessonById: async function (req, res) {
     try {
-      let userLesson = await userService.getUserLessonById(req.query.id);
+      let userLesson = await userService.getUserLessonById(req);
       return res.status(200).json(userLesson);
     } catch (error) {
       return res.status(200).json({
@@ -204,7 +204,7 @@ module.exports = {
   },
   updateUserLesson: async function (req, res) {
     try {
-      let userLesson = await userService.updateUserLesson(req.body);
+      let userLesson = await userService.updateUserLesson(req);
       return res.status(200).json(userLesson);
     } catch (error) {
       return res.status(200).json({
@@ -217,6 +217,28 @@ module.exports = {
     try {
       let userLesson = await userService.deleteUserLesson(req.query.id);
       return res.status(200).json(userLesson);
+    } catch (error) {
+      return res.status(200).json({
+        errCode: -1,
+        errMessage: "Error from server",
+      });
+    }
+  },
+  checkCourseDone: async function (req, res) {
+    try {
+      let userLesson = await userService.checkDoneCourse(req);
+      return res.status(200).json(userLesson);
+    } catch (error) {
+      return res.status(200).json({
+        errCode: -1,
+        errMessage: "Error from server",
+      });
+    }
+  },
+  getMe: async function (req, res) {
+    try {
+      let me = await userService.getMe(req);
+      return res.status(200).json(me);
     } catch (error) {
       return res.status(200).json({
         errCode: -1,

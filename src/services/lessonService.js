@@ -4,7 +4,7 @@ module.exports = {
   createNewLesson: function (data) {
     return new Promise(async function (resolve, reject) {
       try {
-        await models.Lesson.create({
+        const lesson = await models.Lesson.create({
           courseId: data.courseId,
           lessonName: data.lessonName,
           content: data.content,
@@ -14,6 +14,7 @@ module.exports = {
         resolve({
           errCode: 0,
           errMessage: "Create Lesson successfully",
+          lesson: lesson,
         });
       } catch (error) {
         reject(error);

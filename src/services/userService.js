@@ -199,12 +199,15 @@ module.exports = {
       }
     });
   },
-  getAllUsersExercise: function () {
+  getAllUsersExercise: function (req) {
+    const userId = req.user.id;
     return new Promise(async function (resolve, reject) {
       try {
         let userExercise = "";
 
-        userExercise = await models.UserExercise.findAll();
+        userExercise = await models.UserExercise.findAll({
+          where: { userId: req.user.id },
+        });
 
         resolve(userExercise);
       } catch (error) {
@@ -308,12 +311,14 @@ module.exports = {
       }
     });
   },
-  getAllUsersExerciseCourse: function () {
+  getAllUsersExerciseCourse: function (req) {
     return new Promise(async function (resolve, reject) {
       try {
         let userExercise = "";
 
-        userExercise = await models.UserCourse.findAll();
+        userExercise = await models.UserCourse.findAll({
+          where: { userId: req.user.id },
+        });
 
         resolve(userExercise);
       } catch (error) {
@@ -337,23 +342,30 @@ module.exports = {
       }
     });
   },
-  updateUserCourse: function (data) {
+  updateUserCourse: function (req) {
+    const data = req.body;
+    const userId = req.user.id;
     return new Promise(async function (resolve, reject) {
       try {
-        if (!data.userId || !data.courseId) {
+        if (!data.courseId) {
           resolve({
             errCode: 1,
             errMessage: "Missing input parameter",
           });
         }
         let userExercise = await models.UserCourse.findOne({
-          where: { id: data.id },
+          where: { courseId: data.courseId, userId: userId },
           raw: false,
         });
         if (userExercise) {
-          userExercise.rate = data.rate;
-          userExercise.isCompleted = data.isCompleted;
-          userExercise.timeCost = data.timeCost;
+          if (data.rate) {
+            userExercise.rate = data.rate;
+          }
+          if (data.isCompleted) {
+            userExercise.isCompleted = data.isCompleted;
+          }
+
+          // userExercise.timeCost = data.timeCost;
 
           await userExercise.save();
 
@@ -430,14 +442,16 @@ module.exports = {
       }
     });
   },
-  getUserLessonById: function (exerciseId) {
+  getUserLessonById: function (req) {
+    const exerciseId = req.query.id;
+    const userId = req.user.id;
     return new Promise(async function (resolve, reject) {
       try {
         let userExercise = "";
 
         if (exerciseId && exerciseId !== "ALL") {
           userExercise = await models.UserLesson.findOne({
-            where: { id: exerciseId },
+            where: { lessonId: exerciseId, userId: userId },
           });
         }
         resolve(userExercise);
@@ -446,17 +460,19 @@ module.exports = {
       }
     });
   },
-  updateUserLesson: function (data) {
+  updateUserLesson: function (req) {
+    const data = req.body;
+    const userId = req.user.id;
     return new Promise(async function (resolve, reject) {
       try {
-        if (!data.userId || !data.lessonId) {
+        if (!data.lessonId) {
           resolve({
             errCode: 1,
             errMessage: "Missing input parameter",
           });
         }
         let userExercise = await models.UserLesson.findOne({
-          where: { id: data.id },
+          where: { lessonId: data.lessonId, userId: userId },
           raw: false,
         });
         if (userExercise) {
@@ -503,5 +519,27 @@ module.exports = {
         reject(error);
       }
     });
+  },
+  checkDoneCourse: async function (req) {
+    const userId = req.user.id;
+    const { courseId } = req.query;
+    const all = await models.UserLesson.findAll({
+      where: {
+        userId: userId,
+      },
+      include: {
+        model: models.Lesson,
+        where: {
+          courseId: courseId,
+        },
+      },
+    });
+
+    return all;
+  },
+  getMe: async function (req) {
+    const userId = req.user.id;
+    const user = await models.User.findByPk(userId);
+    return user;
   },
 };
