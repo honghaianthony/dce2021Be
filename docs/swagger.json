@@ -7,6 +7,9 @@
   "servers": [
     {
       "url": "http://localhost:3000/api"
+    },
+    {
+      "url": "https://dce-uit.herokuapp.com/api"
     }
   ],
   "tags": [
