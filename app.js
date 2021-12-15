@@ -23,7 +23,11 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3001", "https://dce2021.vercel.app"],
+    origin: [
+      "http://localhost:3001",
+      "https://dce2021.vercel.app",
+      "https://dce2021.netlify.app",
+    ],
   })
 );
 
