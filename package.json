@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon --inspect ./bin/www",
-    "dev": "nodemon --inspect ./bin/www"
+    "dev": "nodemon --inspect ./bin/www",
+    "prepare": "husky install",
+    "format": "lint-staged"
   },
   "dependencies": {
     "base64-js": "^1.5.1",
@@ -32,6 +34,15 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.5.1"
+  },
+  "lint-staged": {
+    "/**/*.js": "prettier --write"
   }
 }

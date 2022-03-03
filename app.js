@@ -27,6 +27,7 @@ app.use(
       "http://localhost:3001",
       "https://dce2021.vercel.app",
       "https://dce2021.netlify.app",
+                          "https://dce2021.ml"
     ],
   })
 );
