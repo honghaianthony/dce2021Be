@@ -1,18 +1,18 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const passport = require("passport");
-const authController = require("../controllers/authController");
+const passport = require('passport');
+const authController = require('../controllers/authController');
 
-router.post("/register", authController.register);
-router.post("/login", authController.login);
-router.post("/forgot_password", authController.recoverPassword);
+router.post('/register', authController.register);
+router.post('/login', authController.login);
+router.post('/forgot_password', authController.recoverPassword);
 
 router.get(
-  "/private",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-                 res.json("ok");
-  }
+    '/private',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        res.json('ok');
+    },
 );
 
 module.exports = router;
