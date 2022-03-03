@@ -11,7 +11,7 @@ router.get(
   "/private",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.json("ok");
+                 res.json("ok");
   }
 );
 
