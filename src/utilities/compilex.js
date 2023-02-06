@@ -108,7 +108,7 @@ const compile = (code, input, inputRadio, lang) => {
 };
 
 const deleteTemp = () => {
-    const directory = 'temp';
+    const directory = '/temp';
 
     //   fs.rmdir(directory, { recursive: true }, () => {
     //     console.log("deleted");
