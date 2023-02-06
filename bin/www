@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('nmcnpm-be:server');
+var debug = require('debug')('web-be:server');
 var http = require('http');
 
 /**
@@ -21,12 +21,43 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+/** 
+ add socket.io
+ */
+ // add socket.io server
+ const { Server } = require("socket.io");
+ const option = {
+   // path: "/chat",
+   serveClient: true,
+   connectTimeout: 30000,
+   cors: {
+     origin: ["http://localhost:3001", "https://dce2021.ml"],
+     methods:["GET","POST"],
+     // allowedHeaders: ["my-custom-header"],
+     credentials: true,
+   },
+ };
+ const io = new Server(server, option);
+ 
+ const registerHandler = require("../src/realtime/handler");
+ 
+ const onConnection = (socket) => {
+   // console.log(`User Connected: ${socket.id}`);
+   registerHandler(io, socket);
+   socket.on("disconnect", () => {
+     // console.log("User Disconnected", socket.id);
+   });
+ };
+ 
+ io.on("connection", onConnection);
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port,() => {
-  console.log(`Server listening on port ${port} go to http://localhost:${port}/docs/ for document`)
+server.listen(port, () => {
+  console.log(
+      `Server listening on port ${port} go to http://localhost:${port}/docs/ for document`,
+  );
 });
 server.on('error', onError);
 server.on('listening', onListening);

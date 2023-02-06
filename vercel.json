@@ -1,0 +1,39 @@
+{
+    "version": 2,
+    "name": "My Project",
+    "env": {
+      "ACCESS_KEY": "GwOJGeOJhaN4H4u5",
+      "CLEINT_SECRET": "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",
+      "CLIENT_ID": "781255889848-aq910bcbqk1sfme8ukkfmm2ir9aj73v9.apps.googleusercontent.com",
+      "DB_URI": "mongodb+srv://khuongduy:khuongduy@dce.x9wnv.mongodb.net/dce_2021_production",
+      "GOOGLE_CLIENT_ID":"707725199461-rifor8c6e3o965sri3n3ee556iv2jj4t.apps.googleusercontent.com",
+      "GOOGLE_CLIENT_SECRET": "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",
+      "PARTNER_KEY": "MOMOGSG620220517",
+      "REFRESH_TOKEN": "1//041pR1L8nAqhjCgYIARAAGAQSNwF-L9IrN4F0C4JMgMvYE-TQSplm3bCN4t4VgaVNFIdxce36i_5MXDiFzriSvIt5Ugv_AZUQSS0",
+      "SECRET_KEY": "amDCa7AnGuvSxpW2ZVgW05atKFmXGFpf"
+    },
+    "installCommand": "yum install -y python3",
+    "builds": [
+      {
+        "src": "index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          { "key": "Access-Control-Allow-Credentials", "value": "true" },
+          { "key": "Access-Control-Allow-Origin", "value": "*" },
+          { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+          { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+        ]
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/index.js"
+      }
+    ]
+  }

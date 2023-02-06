@@ -1,21 +1,64 @@
 {
-  "name": "nmcnpm-be",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
-  },
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "morgan": "~1.9.1",
-    "swagger-ui-express": "^4.1.6",
-    "yamljs": "^0.3.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  }
+    "name": "web-be",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www",
+        "dev": "nodemon ./bin/www",
+        "prepare": "husky install",
+        "format": "lint-staged",
+        "test": "set NODE_ENV=test && jest --forceExit --runInBand --testTimeout=300000"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "compilex": "^0.7.4",
+        "cookie-parser": "~1.4.4",
+        "cors": "^2.8.5",
+        "crypto": "^1.0.1",
+        "debug": "~2.6.9",
+        "dotenv": "^16.0.0",
+        "ejs": "^3.1.8",
+        "express": "~4.16.1",
+        "express-session": "^1.17.2",
+        "fs": "^0.0.1-security",
+        "google-auth-library": "^8.0.1",
+        "googleapis": "^100.0.0",
+        "handlebars": "^4.7.7",
+        "html-to-text": "^8.2.0",
+        "https": "^1.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "juice": "^8.0.0",
+        "mongodb": "^4.4.1",
+        "mongoose": "^6.2.7",
+        "morgan": "~1.9.1",
+        "node-fetch": "^2.6.7",
+        "nodemailer": "^6.7.5",
+        "passport": "^0.5.2",
+        "passport-google-oauth20": "^2.0.0",
+        "passport-jwt": "^4.0.0",
+        "socket.io": "^4.5.0",
+        "swagger-ui-express": "^4.3.0"
+    },
+    "devDependencies": {
+        "@shelf/jest-mongodb": "^2.2.2",
+        "eslint": "^8.10.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "husky": "^7.0.4",
+        "jest": "^27.5.1",
+        "lint-staged": "^12.3.5",
+        "mongodb-memory-server": "^8.4.2",
+        "nodemon": "^2.0.15",
+        "prettier": "^2.5.1",
+        "supertest": "^6.2.2"
+    },
+    "lint-staged": {
+        "./**/*.js": "prettier --write"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "coveragePathIgnorePatterns": [
+            "/node_modules/"
+        ]
+    }
 }
