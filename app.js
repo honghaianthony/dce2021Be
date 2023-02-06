@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 
@@ -20,6 +20,8 @@ const app = express();
 
 db.connectDB();
 
+require('dotenv').config();
+
 //-momery unleaked---------
 app.set('trust proxy', 1);
 app.use(
@@ -28,7 +30,7 @@ app.use(
             secure: true,
             maxAge: 60000,
         },
-        store: new MongoStore(options),
+
         secret: 'secret',
         saveUninitialized: true,
         resave: false,
