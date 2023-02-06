@@ -3,7 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
-const session = require('cookie-session');
+const session = require('express-session');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 
@@ -19,13 +19,27 @@ const app = express();
 
 db.connectDB();
 
+//-momery unleaked---------
+app.set('trust proxy', 1);
 app.use(
     session({
-        secret: 'secretcode',
-        resave: true,
+        cookie: {
+            secure: true,
+            maxAge: 60000,
+        },
+        store: new RedisStore(),
+        secret: 'secret',
         saveUninitialized: true,
+        resave: false,
     }),
 );
+
+app.use(function (req, res, next) {
+    if (!req.session) {
+        return next(new Error('Oh no')); //handle error
+    }
+    next(); //otherwise continue
+});
 
 app.use(
     cors({
